@@ -17,7 +17,7 @@ Fluxo principal:
 
 Cadastro  
 → preencher Nome completo  
-→ preencher E-mail institucional  
+→ preencher E-mail institucional do IFSul
 → criar Senha  
 → Confirmar senha  
 → validar formulário  
@@ -35,6 +35,16 @@ Após a criação da conta:
 
 O e-mail utilizado pode permanecer preenchido para facilitar o acesso.
 
+No MVP e no piloto:
+
+- o cadastro utiliza exclusivamente e-mail institucional do IFSul;
+- não existe confirmação de cadastro por link ou código enviado ao e-mail.
+
+Assim, depois da criação bem-sucedida da conta:
+
+→ o usuário retorna diretamente ao Login.
+
+A confirmação de propriedade do e-mail poderá ser avaliada apenas em uma evolução futura do ConectaCC.
 ---
 
 # 2. Login
@@ -88,6 +98,10 @@ E-mail recebido
 A tela de definição da nova senha não faz parte da navegação normal da aplicação.
 
 Ela deve ser acessada através do link de recuperação.
+
+A recuperação de senha é independente da confirmação de cadastro.
+
+Mesmo sem confirmação de propriedade do e-mail no MVP/piloto, a recuperação continuará utilizando envio de instruções para o endereço associado à conta.
 
 ---
 
@@ -239,6 +253,16 @@ A página da disciplina pode apresentar:
 - materiais aprovados;
 - opção de compartilhar material, quando habilitada.
 
+A referência acadêmica inicial do MVP será a:
+
+**Matriz 2023 do Bacharelado em Ciência da Computação do IFSul – Câmpus Passo Fundo.**
+
+Ela organiza o curso do:
+
+**1º ao 8º semestre.**
+
+A necessidade de contemplar estudantes vinculados à Matriz 2017 será verificada posteriormente e não altera este fluxo neste momento.
+
 ---
 
 # 9. Compartilhar material
@@ -287,7 +311,14 @@ ADMIN
 → APROVADO  
 → material sai da fila  
 → material aparece em Estudos  
+→ data pública = data de aprovação/publicação  
 → autor recebe notificação.
+
+Para os demais estudantes, o material continua aparecendo no MVP atual como:
+
+**Compartilhado pela comunidade**
+
+A decisão sobre exibir a autoria publicamente será retomada apenas no próximo semestre, após os primeiros testes com estudantes.
 
 ## Se rejeitado
 
@@ -423,6 +454,7 @@ Publicação enviada
 
 → APROVADO  
 → publicação aparece no feed da Comunidade  
+→ data pública = data de aprovação/publicação  
 → autor recebe notificação.
 
 ## Rejeição
@@ -436,6 +468,12 @@ Publicação enviada
 # 17. Feed da Comunidade
 
 O feed segue ordem cronológica.
+
+Para conteúdos que passaram por Moderação, a ordenação pública considera a:
+
+**data de aprovação/publicação.**
+
+Isso vale para conteúdos que só se tornam visíveis para os estudantes depois da aprovação.
 
 Pode apresentar:
 
@@ -616,6 +654,14 @@ O MVP possui:
 
 O comportamento ao clicar em uma notificação específica ainda será definido antes da implementação definitiva.
 
+Essa decisão não bloqueia:
+
+- o checkpoint com a professora;
+- a definição da arquitetura geral;
+- a implementação dos módulos anteriores.
+
+Ela deverá estar fechada antes da implementação definitiva de Notificações.
+
 ---
 
 # 24. Moderação
@@ -732,6 +778,7 @@ Exemplos:
 
 Links institucionais ainda não confirmados não devem funcionar como links falsos.
 
+O levantamento dos links institucionais ainda pendentes será retomado após o checkpoint com a professora.
 ---
 
 # 30. Estados gerais
