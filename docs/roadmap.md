@@ -22,15 +22,17 @@ A ideia central é permitir que o ConectaCC cresça de forma progressiva, evitan
 A evolução proposta é:
 
 1. Definição e prototipação
-2. Arquitetura e implementação do MVP
-3. Testes internos
-4. Preparação do piloto
-5. Piloto com estudantes e disciplinas
-6. Revisão do MVP
-7. Possível continuidade institucional / extensão
-8. Possível projeto de pesquisa
-9. Possível produção científica
-10. Evoluções futuras do produto
+2. Checkpoint com a professora e eventuais ajustes
+3. Definição da arquitetura técnica
+4. Implementação do MVP
+5. Testes internos
+6. Preparação do piloto
+7. Piloto com estudantes e disciplinas
+8. Revisão do MVP
+9. Possível continuidade institucional / extensão
+10. Possível projeto de pesquisa
+11. Possível produção científica
+12. Evoluções futuras do produto
 
 ---
 
@@ -78,6 +80,41 @@ As dez áreas principais foram prototipadas:
 9. Configurações
 10. Moderação
 
+# Marco atual — Checkpoint com a professora
+
+Antes da definição definitiva da arquitetura e do início da implementação, o MVP será apresentado à professora.
+
+## Objetivo
+
+Apresentar o estado atual do ConectaCC e validar se a direção adotada está adequada antes de transformar o protótipo em código.
+
+Serão apresentados:
+
+- problema e proposta do ConectaCC;
+- escopo do MVP;
+- protótipo navegável;
+- principais fluxos;
+- documentação do projeto;
+- estado atual;
+- decisões já tomadas;
+- pendências planejadas para etapas futuras.
+
+## Importante
+
+O protótipo representa a especificação funcional e visual do MVP.
+
+Ele ainda não representa uma aplicação implementada.
+
+Caso sejam solicitadas alterações relevantes de produto, fluxo ou escopo:
+
+→ a equipe deverá avaliar e incorporar os ajustes necessários  
+→ atualizar a documentação e o protótipo quando aplicável  
+→ somente depois congelar a arquitetura técnica.
+
+Se não houver alterações relevantes:
+
+→ o projeto segue para a definição da arquitetura.
+
 ---
 
 # Fase 2 — Definição da arquitetura técnica
@@ -85,6 +122,17 @@ As dez áreas principais foram prototipadas:
 ## Objetivo
 
 Definir como o MVP será construído.
+
+Essa etapa começa após:
+
+- a análise de eventuais alterações solicitadas;
+- o fechamento dos ajustes de produto necessários.
+
+A pergunta central desta fase é:
+
+> **Como vamos construir o produto que já foi definido?**
+
+Ela não deve reabrir silenciosamente decisões de produto já documentadas.
 
 ## Principais decisões
 
@@ -191,16 +239,27 @@ Preparar o uso real do ConectaCC por um grupo limitado de estudantes.
 
 Deverão ser resolvidos itens como:
 
-- confirmar domínios de e-mail institucional;
-- confirmar catálogo de disciplinas;
+- confirmar tecnicamente o domínio ou os domínios institucionais do IFSul utilizados na validação do cadastro;
+- utilizar a Matriz 2023 como referência acadêmica inicial;
+- verificar posteriormente se será necessário contemplar estudantes vinculados à Matriz 2017;
 - definir disciplinas piloto;
-- confirmar links institucionais;
+- concluir o levantamento dos links institucionais necessários;
 - revisar Termos de participação;
 - definir tratamento de dados;
 - definir exclusão de conta e dados;
 - definir administradores;
 - preparar instrumento de feedback;
 - definir participantes.
+
+  ## Confirmação de e-mail
+
+A confirmação de propriedade do e-mail por link ou código:
+
+**não faz parte do MVP nem do piloto.**
+
+Ela poderá ser avaliada como evolução futura do ConectaCC.
+
+A recuperação de senha continuará utilizando envio de e-mail normalmente.
 
 ## Disciplinas piloto
 
@@ -279,7 +338,16 @@ Transformar feedback em decisões de produto.
 - revisar personas;
 - revisar requisitos;
 - revisar fluxos;
+- avaliar a percepção dos estudantes sobre a autoria pública dos materiais;
 - corrigir problemas.
+
+A decisão sobre manter os materiais como:
+
+**Compartilhado pela comunidade**
+
+ou apresentar a autoria publicamente será retomada:
+
+**no próximo semestre, após os primeiros testes com estudantes.**
 
 ## Resultado esperado
 
@@ -381,8 +449,14 @@ Possibilidades:
 - outros câmpus;
 - novas iniciativas institucionais.
 
-A expansão não faz parte do MVP atual.
+Caso o ConectaCC seja futuramente expandido para fora do IFSul, também poderá ser necessário avaliar:
 
+- suporte a e-mails institucionais de outras instituições;
+- novas regras de domínio;
+- adequação dos recursos institucionais apresentados;
+- diferenças de estrutura acadêmica entre instituições.
+
+Essas questões não pertencem ao MVP nem ao piloto atual.
 ---
 
 # Fase 12 — Funcionalidades futuras possíveis
@@ -439,6 +513,14 @@ As seguintes funcionalidades já foram discutidas, mas permanecem fora do MVP.
 - remoção de conteúdo aprovado;
 - gestão administrativa;
 - contador de pendências.
+
+## Autenticação e conta
+
+Possibilidades futuras:
+
+- confirmação de propriedade do e-mail institucional por link ou código;
+- suporte a outros domínios institucionais caso o ConectaCC seja expandido para fora do IFSul;
+- políticas adicionais de segurança de conta conforme a evolução do projeto.
 
 ## Inteligência Artificial
 
