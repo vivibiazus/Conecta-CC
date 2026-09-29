@@ -97,6 +97,16 @@ O cadastro utiliza:
 
 O Nome completo é utilizado inicialmente como Nome de exibição e poderá ser alterado posteriormente no Perfil.
 
+No MVP e no piloto, o cadastro utiliza exclusivamente:
+
+**e-mail institucional do IFSul.**
+
+A possibilidade de aceitar e-mails de outras instituições poderá ser avaliada apenas em uma futura expansão do ConectaCC para fora do IFSul.
+
+No MVP e no piloto não haverá confirmação de propriedade do e-mail por link ou código.
+
+Essa funcionalidade poderá ser avaliada em uma evolução futura e não interfere no fluxo de recuperação de senha.
+
 ### Senha
 
 Regra inicial:
@@ -184,7 +194,27 @@ Apresenta as disciplinas selecionadas pelo estudante no Perfil.
 
 Apresenta o catálogo das disciplinas confirmadas do curso.
 
-A lista oficial ainda deverá ser confirmada por fonte institucional antes da implementação definitiva.
+A referência acadêmica inicial do MVP será a:
+
+**Matriz 2023 do Bacharelado em Ciência da Computação do IFSul – Câmpus Passo Fundo.**
+
+Fontes institucionais identificadas:
+
+Grade Curricular:
+
+https://inf.passofundo.ifsul.edu.br/src/bcc_grade/index.html
+
+Matriz / Organograma de pré-requisitos:
+
+https://inf.passofundo.ifsul.edu.br/src/bcc_organograma/index.html
+
+A Matriz 2023 organiza o curso do:
+
+**1º ao 8º semestre.**
+
+A necessidade de contemplar estudantes ainda vinculados à Matriz 2017 será verificada posteriormente e não bloqueia as atividades atuais.
+
+As disciplinas piloto para compartilhamento de materiais ainda deverão ser escolhidas.
 
 ## Página da disciplina
 
@@ -228,10 +258,19 @@ O material aparece como:
 
 **Compartilhado pela comunidade**
 
-A hipótese de anonimato público deverá ser validada posteriormente com estudantes.
+Esse comportamento será mantido durante o MVP atual.
+
+A decisão sobre apresentar ou não a autoria publicamente será retomada:
+
+**no próximo semestre, após os primeiros testes com estudantes.**
 
 O ADMIN continua identificando quem realizou o envio para fins de Moderação e notificação.
 
+Quando um material for aprovado, sua data pública será:
+
+**a data de aprovação/publicação.**
+
+A data original do envio poderá permanecer registrada internamente.
 ---
 
 # 9. Oportunidade
@@ -270,6 +309,12 @@ Tipos iniciais:
 
 As oportunidades indicadas passam por Moderação antes de aparecer para outros estudantes.
 
+A data apresentada publicamente corresponde à:
+
+**data de aprovação/publicação.**
+
+A data original do envio permanece como informação interna.
+
 ---
 
 # 10. Comunidade
@@ -288,6 +333,10 @@ Pode apresentar:
 - publicações compartilhadas por estudantes.
 
 O feed utiliza ordem do mais recente para o mais antigo.
+
+Para publicações que passam por Moderação, a referência pública de data utiliza:
+
+**a data de aprovação/publicação.**
 
 Não existe algoritmo de recomendação no MVP.
 
@@ -402,6 +451,10 @@ O MVP utiliza:
 
 Não é necessária uma página específica de notificações nesta primeira versão.
 
+O comportamento ao clicar em uma notificação específica será definido antes da implementação definitiva de Notificações.
+
+Essa decisão não bloqueia a definição da arquitetura geral.
+
 ---
 
 # 14. Moderação
@@ -498,6 +551,7 @@ Não implementar nesta primeira versão:
 - gamificação;
 - upload direto de materiais;
 - upload de foto de Perfil;
+- confirmação de propriedade do e-mail institucional por link ou código;
 - candidatura a oportunidades dentro do sistema;
 - feed algorítmico;
 - rede social completa;
