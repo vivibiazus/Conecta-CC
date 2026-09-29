@@ -16,6 +16,14 @@ O objetivo é diferenciar claramente:
 
 # 1. Decisões de produto ainda abertas
 
+# 1. Decisões e próximos passos de produto
+
+Depois da auditoria final do protótipo, algumas questões que estavam em aberto já foram decididas pela equipe.
+
+Esta seção mantém apenas decisões que ainda precisam ser tomadas ou atividades de produto que deverão ser retomadas no momento adequado.
+
+---
+
 ## 1.1 Informações e Serviços
 
 Ainda precisa ser definido onde o ConectaCC reunirá ou contextualizará acessos como:
@@ -35,26 +43,15 @@ A decisão deverá considerar o princípio:
 
 > O ConectaCC deve conectar e contextualizar recursos existentes, e não reconstruir sistemas institucionais.
 
-**Quando decidir:** antes do piloto.
+Antes da decisão definitiva, será realizado um levantamento mais completo dos recursos institucionais disponíveis.
+
+**Quando retomar:** após o checkpoint com a professora.
+
+A decisão deverá estar fechada antes da implementação das áreas afetadas.
 
 ---
 
-## 1.2 Data pública de materiais e publicações
-
-A área Oportunidade já utiliza como referência pública a data de aprovação/publicação.
-
-Ainda deve ser confirmado se o mesmo padrão será utilizado para:
-
-- materiais em Estudos;
-- publicações da Comunidade.
-
-A opção mais coerente é utilizar a data de aprovação/publicação, e não a data original do envio para Moderação.
-
-**Quando decidir:** antes de implementar Estudos e Comunidade.
-
----
-
-## 1.3 Comportamento das notificações
+## 1.2 Comportamento das notificações
 
 Ainda deve ser definido o comportamento ao clicar em uma notificação.
 
@@ -66,88 +63,137 @@ Questões:
 - uma notificação de oportunidade aprovada deve abrir Oportunidade?
 - uma publicação aprovada deve abrir a Comunidade?
 
-**Quando decidir:** antes da implementação definitiva do sino de notificações.
+Essa decisão não precisa ser tomada antes da definição da arquitetura geral.
+
+**Quando decidir:** antes da implementação definitiva de Notificações.
 
 ---
 
-## 1.4 URLs institucionais
+## 1.3 Catálogo acadêmico e disciplinas piloto
 
-Ainda precisam ser confirmados links oficiais para recursos como:
+A fonte institucional inicial para o catálogo acadêmico já foi identificada.
 
-- Estágios;
-- Projetos de Extensão;
+### Matriz 2023
+
+Grade Curricular do Bacharelado em Ciência da Computação:
+
+https://inf.passofundo.ifsul.edu.br/src/bcc_grade/index.html
+
+Matriz / Organograma de pré-requisitos:
+
+https://inf.passofundo.ifsul.edu.br/src/bcc_organograma/index.html
+
+A Matriz 2023 será utilizada como referência acadêmica inicial do MVP.
+
+Ela organiza o curso do:
+
+**1º ao 8º semestre.**
+
+Também foram identificadas fontes institucionais para:
+
+- disciplinas;
+- carga horária;
 - ementas;
-- grupo de WhatsApp dos estudantes;
-- Instagram institucional;
-- outros recursos relevantes.
+- organização por semestre;
+- pré-requisitos.
 
-Links não confirmados não devem ser inventados.
+Ainda precisam ser definidas:
 
-**Quando decidir:** antes do piloto.
-
----
-
-## 1.5 Domínios de e-mail institucional
-
-O protótipo atualmente valida apenas o formato do endereço de e-mail.
-
-Ainda precisam ser confirmados, através de fonte institucional confiável, quais domínios poderão ser utilizados no cadastro.
-
-**Quando decidir:** antes do piloto.
-
----
-
-## 1.6 Confirmação de e-mail no cadastro
-
-Ainda deve ser decidido se o cadastro exigirá confirmação de propriedade do e-mail institucional.
-
-Sem confirmação, o sistema consegue validar o formato e eventualmente o domínio, mas não consegue garantir que o usuário realmente possui aquele endereço.
-
-A recuperação de senha já dependerá de envio de e-mail, portanto essa infraestrutura deverá ser considerada na decisão técnica.
-
-**Quando decidir:** antes do piloto.
-
----
-
-## 1.7 Catálogo de disciplinas, semestres e disciplinas piloto
-
-Ainda precisam ser confirmados:
-
-- catálogo oficial de disciplinas;
-- matriz curricular utilizada como fonte;
-- opções adequadas para o campo Semestre;
 - quais disciplinas terão área de materiais inicialmente;
 - quais disciplinas participarão do piloto.
 
-Os dados utilizados atualmente no protótipo são demonstrativos.
+A necessidade de contemplar estudantes ainda vinculados à Matriz 2017 será verificada posteriormente, quando esse levantamento se tornar necessário para preparar os dados reais do piloto.
 
-**Quando decidir:** antes do piloto.
+Essa verificação não bloqueia a arquitetura nem as atividades atuais.
 
 ---
 
-## 1.8 Anonimato público dos materiais
+## 1.4 Anonimato público dos materiais
 
-No protótipo, materiais aparecem como:
+No MVP atual, materiais aparecem como:
 
 **Compartilhado pela comunidade**
 
 O ADMIN continua identificando o autor para fins de Moderação e notificação.
 
-Ainda deverá ser validado com estudantes se o anonimato público é desejável ou se a autoria deveria ser apresentada.
+A decisão sobre apresentar ou não a autoria publicamente não será tomada neste semestre.
 
-**Quando decidir:** após os primeiros testes com estudantes.
+**Quando decidir:** no próximo semestre, após os primeiros testes com estudantes.
+
+Até lá, permanece o comportamento atual do MVP:
+
+**Compartilhado pela comunidade**
 
 ---
 
-## 1.9 E-mails utilizados nos exemplos do protótipo
+# 1.5 Decisões fechadas após a auditoria
 
-O protótipo utiliza diferentes endereços fictícios em algumas telas.
+As seguintes questões estavam em aberto no momento da auditoria, mas já foram decididas pela equipe.
 
-Essa diferença não afeta o funcionamento do produto e é apenas uma questão de acabamento visual.
+## Data pública de materiais e publicações
 
-Pode ser padronizada futuramente.
+A data pública utilizada será:
 
-**Quando decidir:** quando conveniente.
+**data de aprovação/publicação.**
+
+A mesma regra será utilizada para:
+
+- Material;
+- Publicação;
+- Oportunidade.
+
+Exemplo:
+
+Conteúdo enviado na segunda-feira  
+→ permanece PENDENTE  
+→ ADMIN aprova na quarta-feira  
+→ publicamente aparece como publicado na quarta-feira.
+
+A data original do envio poderá permanecer registrada internamente.
+
+---
+
+## E-mail utilizado no MVP e no piloto
+
+O cadastro do MVP e do piloto utilizará:
+
+**e-mail institucional do IFSul.**
+
+A possibilidade de aceitar e-mails institucionais de outras instituições será considerada apenas caso exista uma futura expansão do ConectaCC para fora do IFSul.
+
+A confirmação técnica do domínio ou dos domínios exatos utilizados pelo IFSul poderá ser realizada durante a implementação.
+
+Isso não altera a regra de produto:
+
+**MVP e piloto = e-mail institucional do IFSul.**
+
+---
+
+## Confirmação de propriedade do e-mail
+
+No MVP e no piloto:
+
+**não haverá confirmação de cadastro por link ou código enviado ao e-mail.**
+
+Essa funcionalidade poderá ser avaliada em uma evolução futura do ConectaCC.
+
+Essa decisão não altera a recuperação de senha, que continuará dependendo de envio de e-mail.
+
+---
+
+## E-mails utilizados nos exemplos
+
+Todos os exemplos apresentados no ConectaCC deverão representar:
+
+**e-mail institucional do IFSul.**
+
+Exemplos genéricos como:
+
+`viviane@exemplo.com`
+
+não deverão permanecer na versão final.
+
+A padronização visual poderá ser realizada durante a limpeza final do protótipo.
 
 ---
 
@@ -394,13 +440,14 @@ Ainda deverá ser realizado um levantamento mais completo de recursos relevantes
 
 Entre eles:
 
-- [ ] SUAP
-- [ ] Moodle
-- [ ] Painel de Sistemas do Câmpus
-- [ ] site do Instituto de Informática
+- [x] SUAP
+- [x] Moodle
+- [x] Painel de Sistemas do Câmpus
+- [x] site do Instituto de Informática
 - [ ] professores
-- [ ] organograma
-- [ ] ementas
+- [x] Matriz / Organograma de pré-requisitos
+- [x] Grade Curricular
+- [x] fonte institucional para ementas
 - [ ] Estágios
 - [ ] Projetos de Extensão
 - [ ] Instagram institucional
@@ -425,7 +472,8 @@ Antes dos testes com estudantes:
 - [ ] escolher disciplinas piloto;
 - [ ] definir participantes;
 - [ ] revisar Termos;
-- [ ] confirmar links institucionais;
+- [ ] concluir levantamento dos links institucionais necessários;
+- [ ] confirmar o domínio técnico utilizado para validar e-mails institucionais do IFSul;
 - [ ] preparar formulário ou instrumento de feedback;
 - [ ] definir o que será observado durante os testes;
 - [ ] preparar ambiente funcional;
@@ -457,8 +505,8 @@ Itens já identificados como possíveis evoluções e que não fazem parte da pr
 - seguidores;
 - recomendações;
 - Inteligência Artificial;
+- confirmação de propriedade do e-mail institucional por link ou código;
 - gamificação.
-
 ---
 
 # 7. Observação
