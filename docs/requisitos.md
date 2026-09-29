@@ -103,12 +103,32 @@ O aceite deve possuir:
 
 O aceite só deve ser registrado quando a conta for efetivamente criada.
 
-## RF-05 — Domínio institucional
+## RF-05 — E-mail institucional
 
-Enquanto os domínios institucionais não estiverem oficialmente confirmados, o protótipo valida somente o formato do e-mail.
+No MVP e no piloto, o cadastro deve utilizar:
 
-Na implementação definitiva, os domínios aceitos deverão ser definidos antes do piloto.
+**e-mail institucional do IFSul.**
 
+A implementação deverá validar:
+
+- formato válido de e-mail;
+- domínio institucional aceito pelo IFSul.
+
+A confirmação técnica do domínio ou dos domínios exatos utilizados pelo IFSul poderá ser realizada durante a implementação.
+
+A possibilidade de aceitar e-mails institucionais de outras instituições fica fora do MVP atual e poderá ser avaliada somente em uma eventual expansão futura do ConectaCC.
+
+## RF-05.1 — Confirmação de propriedade do e-mail
+
+No MVP e no piloto:
+
+**não haverá confirmação de cadastro por link ou código enviado ao e-mail.**
+
+O sistema não precisa exigir que o usuário confirme a propriedade do endereço antes de utilizar a conta.
+
+Essa funcionalidade poderá ser avaliada em uma evolução futura do ConectaCC.
+
+Essa regra não altera a recuperação de senha, que continuará utilizando envio de e-mail.
 ---
 
 # 3. Login
@@ -303,7 +323,33 @@ A seção deve apresentar as disciplinas atuais selecionadas no Perfil.
 
 O sistema deve possuir catálogo das disciplinas confirmadas do curso.
 
-O catálogo oficial será definido a partir de fonte institucional.
+A referência acadêmica inicial do MVP será a:
+
+**Matriz 2023 do Bacharelado em Ciência da Computação do IFSul – Câmpus Passo Fundo.**
+
+Fontes institucionais:
+
+Grade Curricular:
+
+https://inf.passofundo.ifsul.edu.br/src/bcc_grade/index.html
+
+Matriz / Organograma de pré-requisitos:
+
+https://inf.passofundo.ifsul.edu.br/src/bcc_organograma/index.html
+
+A Matriz 2023 organiza o curso do:
+
+**1º ao 8º semestre.**
+
+Ela será utilizada como referência inicial para:
+
+- disciplinas;
+- semestres;
+- carga horária;
+- ementas;
+- pré-requisitos.
+
+A necessidade de contemplar estudantes vinculados à Matriz 2017 será verificada posteriormente e não bloqueia as atividades atuais.
 
 ## RF-32 — Busca de disciplina
 
@@ -365,13 +411,38 @@ Só pode aparecer publicamente depois de:
 
 ## RF-39 — Autoria pública
 
-No protótipo atual, materiais aparecem como:
+No MVP atual, materiais devem aparecer publicamente como:
 
 **Compartilhado pela comunidade**
 
-O ADMIN continua identificando o autor.
+O ADMIN continua identificando o autor para:
 
-A regra definitiva de anonimato público será validada posteriormente.
+- Moderação;
+- notificação;
+- controle interno do envio.
+
+A decisão sobre apresentar ou não a autoria publicamente não será tomada neste semestre.
+
+Ela será retomada no próximo semestre, após os primeiros testes com estudantes.
+
+Até essa avaliação, permanece o comportamento atual:
+
+**Compartilhado pela comunidade**
+
+## RF-39.1 — Data pública do material
+
+A data apresentada publicamente para um material deve corresponder à:
+
+**data de aprovação/publicação.**
+
+A data original de envio pode permanecer registrada internamente.
+
+Exemplo:
+
+Material enviado na segunda-feira  
+→ permanece PENDENTE  
+→ ADMIN aprova na quarta-feira  
+→ publicamente aparece como publicado na quarta-feira.
 
 ---
 
@@ -413,7 +484,13 @@ Oportunidade enviada deve ficar PENDENTE até análise do ADMIN.
 
 ## RF-45 — Data pública
 
-Depois da aprovação, a referência pública deve considerar data de aprovação/publicação.
+Depois da aprovação, a referência pública da oportunidade deve considerar:
+
+**data de aprovação/publicação.**
+
+A data original de envio permanece como informação interna.
+
+Essa regra segue o mesmo padrão utilizado para os demais conteúdos colaborativos.
 
 ---
 
@@ -448,6 +525,14 @@ O usuário deve poder compartilhar:
 - Link.
 
 A publicação deve passar por Moderação.
+
+## RF-48.1 — Data pública da publicação
+
+A data apresentada publicamente para uma publicação deve corresponder à:
+
+**data de aprovação/publicação.**
+
+A data original de envio pode permanecer registrada internamente.
 
 ## RF-49 — Material no feed
 
@@ -597,6 +682,7 @@ Deve existir suporte para:
 - marcar todas como lidas.
 
 O comportamento de navegação ao clicar em cada notificação ainda será definido.
+Essa decisão deverá ser tomada antes da implementação definitiva de Notificações e não bloqueia a definição da arquitetura geral.
 
 ---
 
@@ -793,6 +879,7 @@ Não fazem parte da primeira versão:
 - gamificação;
 - upload de materiais;
 - upload de fotos;
+- confirmação de propriedade do e-mail institucional por link ou código;
 - candidatura interna;
 - CRUD administrativo completo;
 - histórico administrativo completo;
