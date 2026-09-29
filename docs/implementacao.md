@@ -20,14 +20,18 @@ Atualmente o ConectaCC possui:
 - estados de erro, loading e vazio previstos;
 - princípios de responsividade e acessibilidade considerados;
 - auditoria geral do protótipo realizada.
+- documentação principal do MVP concluída;
+- produto, UX e escopo do MVP fechados para o checkpoint com a professora.
 
 As funcionalidades prototipadas ainda não devem ser consideradas implementadas.
+
+Antes do início da arquitetura e da implementação, o projeto será analisado para confirmação da arquitetura idealizada. Caso sejam solicitadas alterações relevantes de produto, elas deverão ser avaliadas e incorporadas antes da criação da estrutura técnica definitiva.
 
 ---
 
 # 2. Antes de escrever código
 
-Antes do desenvolvimento funcional, a equipe precisa definir a arquitetura técnica.
+A equipe precisa definir a arquitetura técnica antes de iniciar o desenvolvimento funcional.
 
 Principais decisões:
 
@@ -44,6 +48,14 @@ Principais decisões:
 - deploy;
 - estratégia de testes;
 - organização definitiva do código.
+
+A etapa técnica deverá responder principalmente:
+
+> **Como vamos construir o produto que já foi definido?**
+
+Requisitos de produto não devem ser alterados silenciosamente por decisões técnicas.
+
+Caso exista conflito entre uma decisão de arquitetura e os requisitos documentados, o conflito deverá ser apresentado à equipe antes da alteração do produto.
 
 Essa etapa será conduzida principalmente por Marcelo Henrique Germiniani Panho, com apoio da equipe.
 
@@ -72,7 +84,8 @@ Implementar:
 
 - [ ] Login.
 - [ ] Cadastro.
-- [ ] validação de e-mail.
+- [ ] validação do formato do e-mail.
+- [ ] validação do domínio institucional do IFSul.
 - [ ] Termos de participação versionados.
 - [ ] registro do aceite dos Termos somente após criação da conta.
 - [ ] Logout.
@@ -81,14 +94,36 @@ Implementar:
 - [ ] validação do link de recuperação.
 - [ ] proteção de rotas autenticadas.
 
-Também será necessário definir:
+## E-mail institucional
 
-- [ ] domínios institucionais aceitos;
-- [ ] confirmação de propriedade do e-mail;
-- [ ] limite ou bloqueio após várias tentativas de Login;
-- [ ] política de sessões;
-- [ ] comportamento das outras sessões após alteração de senha;
-- [ ] comportamento das outras sessões após recuperação de senha.
+No MVP e no piloto:
+
+**somente e-mail institucional do IFSul poderá ser utilizado no cadastro.**
+
+Durante a implementação deverá ser confirmado tecnicamente qual domínio ou quais domínios do IFSul serão aceitos.
+
+A possibilidade de aceitar e-mails de outras instituições pertence somente a uma eventual expansão futura do ConectaCC.
+
+## Confirmação de propriedade do e-mail
+
+No MVP e no piloto:
+
+**não haverá confirmação de cadastro por link ou código enviado ao e-mail.**
+
+Essa funcionalidade não deve ser implementada nesta versão.
+
+Ela poderá ser avaliada em uma evolução futura.
+
+Essa decisão não altera a recuperação de senha, que continuará utilizando envio de e-mail.
+
+## Decisões técnicas de autenticação ainda necessárias
+
+- [ ] definir limite ou bloqueio após várias tentativas de Login;
+- [ ] definir política de sessões;
+- [ ] definir comportamento das outras sessões após alteração de senha;
+- [ ] definir comportamento das outras sessões após recuperação de senha;
+- [ ] definir formato, segurança e validade do link de recuperação;
+- [ ] definir provedor responsável pelo envio dos e-mails.
 
 ---
 
@@ -188,6 +223,30 @@ Implementar:
 - [ ] envio de material por link.
 - [ ] integração com Moderação.
 
+## Referência acadêmica inicial
+
+A implementação utilizará inicialmente como referência:
+
+**Matriz 2023 do Bacharelado em Ciência da Computação do IFSul – Câmpus Passo Fundo.**
+
+Fontes institucionais identificadas:
+
+Grade Curricular:
+
+https://inf.passofundo.ifsul.edu.br/src/bcc_grade/index.html
+
+Matriz / Organograma de pré-requisitos:
+
+https://inf.passofundo.ifsul.edu.br/src/bcc_organograma/index.html
+
+A Matriz 2023 organiza o curso do:
+
+**1º ao 8º semestre.**
+
+A necessidade de contemplar estudantes vinculados à Matriz 2017 será verificada posteriormente.
+
+Esse levantamento não bloqueia a definição da arquitetura.
+
 No MVP não existe upload direto de arquivos.
 
 ---
@@ -223,6 +282,19 @@ Para outros estudantes, o material pode aparecer como:
 
 O ADMIN continua identificando o autor.
 
+No MVP atual, a autoria pública permanecerá como:
+
+**Compartilhado pela comunidade**
+
+A decisão sobre apresentar a autoria aos demais estudantes será retomada apenas no próximo semestre, após os primeiros testes.
+
+## Data pública
+
+Quando aprovado, o material deverá utilizar publicamente:
+
+**a data de aprovação/publicação.**
+
+A data original do envio poderá permanecer armazenada internamente.
 ---
 
 # 10. Oportunidade
@@ -251,6 +323,11 @@ Tipos iniciais:
 
 As oportunidades comunitárias só aparecem depois da aprovação.
 
+Quando aprovadas, sua data pública deverá ser:
+
+**a data de aprovação/publicação.**
+
+A data original do envio permanece como informação interna.
 ---
 
 # 11. Comunidade
@@ -269,6 +346,12 @@ Implementar:
 - [ ] busca por disciplinas atuais;
 - [ ] botão "Mostrar mais";
 - [ ] canais da comunidade.
+
+Para publicações enviadas pela comunidade e aprovadas pela Moderação:
+
+**a data pública será a data de aprovação/publicação.**
+
+A data original do envio poderá permanecer registrada internamente.
 
 A busca deve considerar:
 
@@ -396,6 +479,13 @@ Também implementar:
 
 Ainda deverá ser definido o comportamento ao clicar em uma notificação.
 
+Essa decisão deverá ser tomada antes da implementação definitiva deste módulo.
+
+Ela não bloqueia:
+
+- o checkpoint com a professora;
+- a definição da arquitetura geral;
+- a implementação dos módulos anteriores.
 ---
 
 # 17. URLs e segurança
@@ -529,5 +619,13 @@ Com uma versão funcional será possível:
 6. realizar testes com estudantes;
 7. coletar feedback;
 8. analisar os resultados;
-9. priorizar melhorias;
-10. planejar a próxima versão do ConectaCC.
+
+## Possíveis evoluções posteriores
+
+Não fazem parte da implementação atual, mas poderão ser avaliadas futuramente:
+
+- confirmação de propriedade do e-mail institucional por link ou código;
+- suporte a outras instituições e outros domínios de e-mail;
+- revisão da autoria pública dos materiais após testes com estudantes.
+10. priorizar melhorias;
+11. planejar a próxima versão do ConectaCC.
