@@ -1,0 +1,533 @@
+# Plano de Implementação — ConectaCC
+
+Este documento organiza as principais etapas necessárias para transformar o MVP prototipado do ConectaCC em uma aplicação funcional.
+
+O protótipo já define o comportamento esperado das principais telas e fluxos.
+
+A implementação técnica será realizada posteriormente, após a definição da arquitetura.
+
+---
+
+# 1. Situação atual
+
+Atualmente o ConectaCC possui:
+
+- escopo do MVP definido;
+- identidade visual definida;
+- fluxos principais definidos;
+- dez áreas principais prototipadas;
+- comportamento ALUNO e ADMIN definido;
+- estados de erro, loading e vazio previstos;
+- princípios de responsividade e acessibilidade considerados;
+- auditoria geral do protótipo realizada.
+
+As funcionalidades prototipadas ainda não devem ser consideradas implementadas.
+
+---
+
+# 2. Antes de escrever código
+
+Antes do desenvolvimento funcional, a equipe precisa definir a arquitetura técnica.
+
+Principais decisões:
+
+- stack;
+- arquitetura geral;
+- frontend;
+- backend;
+- banco de dados;
+- autenticação;
+- recuperação de senha;
+- provedor de e-mail;
+- autorização ALUNO/ADMIN;
+- hospedagem;
+- deploy;
+- estratégia de testes;
+- organização definitiva do código.
+
+Essa etapa será conduzida principalmente por Marcelo Henrique Germiniani Panho, com apoio da equipe.
+
+---
+
+# 3. Fundação do projeto
+
+- [ ] Definir stack.
+- [ ] Definir arquitetura.
+- [ ] Definir estrutura de pastas do código.
+- [ ] Configurar ambiente de desenvolvimento.
+- [ ] Configurar banco de dados.
+- [ ] Configurar autenticação.
+- [ ] Configurar papéis ALUNO e ADMIN.
+- [ ] Implementar autorização no backend.
+- [ ] Configurar variáveis de ambiente.
+- [ ] Definir estratégia de branches e commits.
+- [ ] Definir ambiente de hospedagem.
+- [ ] Definir estratégia de deploy.
+
+---
+
+# 4. Autenticação
+
+Implementar:
+
+- [ ] Login.
+- [ ] Cadastro.
+- [ ] validação de e-mail.
+- [ ] Termos de participação versionados.
+- [ ] registro do aceite dos Termos somente após criação da conta.
+- [ ] Logout.
+- [ ] Recuperação de senha.
+- [ ] envio de link de recuperação por e-mail.
+- [ ] validação do link de recuperação.
+- [ ] proteção de rotas autenticadas.
+
+Também será necessário definir:
+
+- [ ] domínios institucionais aceitos;
+- [ ] confirmação de propriedade do e-mail;
+- [ ] limite ou bloqueio após várias tentativas de Login;
+- [ ] política de sessões;
+- [ ] comportamento das outras sessões após alteração de senha;
+- [ ] comportamento das outras sessões após recuperação de senha.
+
+---
+
+# 5. Layout global
+
+Implementar os componentes compartilhados das telas autenticadas:
+
+- [ ] Sidebar.
+- [ ] Header.
+- [ ] Avatar com iniciais.
+- [ ] Nome de exibição.
+- [ ] Sino de notificações.
+- [ ] Badge de notificações.
+- [ ] Menu mobile em formato de drawer.
+- [ ] Estados de loading.
+- [ ] Estados de erro.
+- [ ] Componentes compartilhados.
+
+A navegação deve diferenciar corretamente:
+
+## ALUNO
+
+- Home
+- Estudos
+- Oportunidade
+- Comunidade
+- Perfil
+- Configurações
+- Sair
+
+## ADMIN
+
+Possui os mesmos itens e adicionalmente:
+
+- Moderação
+
+---
+
+# 6. Home
+
+Implementar:
+
+- [ ] saudação;
+- [ ] apresentação do ConectaCC;
+- [ ] atalhos principais;
+- [ ] consulta do estado do Perfil;
+- [ ] card "Complete seu perfil";
+- [ ] desaparecimento do card quando o Perfil estiver completo;
+- [ ] integração com notificações;
+- [ ] loading e erro parcial.
+
+---
+
+# 7. Perfil
+
+Implementar:
+
+- [ ] visualização do Perfil;
+- [ ] edição;
+- [ ] Nome de exibição;
+- [ ] curso;
+- [ ] semestre;
+- [ ] disciplinas atuais;
+- [ ] Sobre mim;
+- [ ] Interesses;
+- [ ] Posso ajudar com;
+- [ ] Procuro ajuda com;
+- [ ] GitHub;
+- [ ] LinkedIn;
+- [ ] avatar por iniciais;
+- [ ] validações;
+- [ ] confirmação de alterações não salvas.
+
+O Perfil é considerado completo quando possui:
+
+- Nome de exibição;
+- pelo menos uma disciplina atual.
+
+Também deverá ser implementada a visibilidade adequada das informações para outros estudantes autenticados.
+
+---
+
+# 8. Estudos
+
+Implementar:
+
+- [ ] Minhas disciplinas.
+- [ ] Todas as disciplinas.
+- [ ] busca de disciplinas.
+- [ ] identificação de "Minha disciplina".
+- [ ] página da disciplina.
+- [ ] acesso à ementa oficial quando houver URL confirmada.
+- [ ] materiais aprovados.
+- [ ] estado sem materiais.
+- [ ] disciplina ainda sem área de materiais.
+- [ ] formulário Compartilhar material.
+- [ ] envio de material por link.
+- [ ] integração com Moderação.
+
+No MVP não existe upload direto de arquivos.
+
+---
+
+# 9. Materiais
+
+Campos principais:
+
+- Título;
+- Descrição opcional;
+- Link;
+- Disciplina;
+- Autor;
+- Status.
+
+Estados:
+
+- PENDENTE;
+- APROVADO;
+- REJEITADO.
+
+Fluxo:
+
+Material enviado
+→ PENDENTE
+→ ADMIN analisa
+→ APROVADO ou REJEITADO
+→ notificação ao autor.
+
+Para outros estudantes, o material pode aparecer como:
+
+**Compartilhado pela comunidade**
+
+O ADMIN continua identificando o autor.
+
+---
+
+# 10. Oportunidade
+
+Implementar:
+
+- [ ] oportunidades institucionais;
+- [ ] oportunidades da comunidade;
+- [ ] busca;
+- [ ] filtro por tipo;
+- [ ] cards;
+- [ ] formulário Indicar oportunidade;
+- [ ] validações;
+- [ ] integração com Moderação;
+- [ ] loading;
+- [ ] erro parcial;
+- [ ] estado vazio.
+
+Tipos iniciais:
+
+- Estágio;
+- Emprego;
+- Evento;
+- Projeto;
+- Outro.
+
+As oportunidades comunitárias só aparecem depois da aprovação.
+
+---
+
+# 11. Comunidade
+
+Implementar:
+
+- [ ] feed cronológico;
+- [ ] novos materiais no feed;
+- [ ] publicações externas;
+- [ ] Compartilhar com a comunidade;
+- [ ] integração com Moderação;
+- [ ] busca de estudantes;
+- [ ] filtros;
+- [ ] ordem alfabética;
+- [ ] exclusão do próprio usuário dos resultados;
+- [ ] busca por disciplinas atuais;
+- [ ] botão "Mostrar mais";
+- [ ] canais da comunidade.
+
+A busca deve considerar:
+
+- Nome de exibição;
+- Interesses;
+- Pode ajudar com;
+- Procura ajuda com;
+- Disciplinas atuais.
+
+---
+
+# 12. Perfil público
+
+Implementar:
+
+- [ ] avatar;
+- [ ] Nome de exibição;
+- [ ] Curso;
+- [ ] Semestre;
+- [ ] Sobre;
+- [ ] Interesses;
+- [ ] Pode ajudar com;
+- [ ] Procura ajuda com;
+- [ ] Disciplinas atuais;
+- [ ] GitHub;
+- [ ] LinkedIn;
+- [ ] estados de loading;
+- [ ] erro;
+- [ ] Perfil indisponível.
+
+Não exibir:
+
+- e-mail institucional;
+- Nome completo da conta quando diferente do Nome de exibição;
+- dados de autenticação;
+- dados administrativos.
+
+---
+
+# 13. Configurações
+
+Implementar:
+
+- [ ] exibição do e-mail institucional em modo somente leitura;
+- [ ] Senha atual;
+- [ ] Nova senha;
+- [ ] Confirmar nova senha;
+- [ ] alteração de senha;
+- [ ] validações;
+- [ ] loading;
+- [ ] sucesso;
+- [ ] erro;
+- [ ] alterações não salvas.
+
+Exclusão de conta não pertence à interface atual do MVP.
+
+Sua política deverá ser definida antes do piloto.
+
+---
+
+# 14. Moderação
+
+Implementar fila única para:
+
+- MATERIAL;
+- PUBLICAÇÃO;
+- OPORTUNIDADE.
+
+Funcionalidades:
+
+- [ ] listar conteúdos PENDENTES;
+- [ ] ordenar mais antigos primeiro;
+- [ ] filtrar por tipo;
+- [ ] visualizar detalhes;
+- [ ] identificar autor;
+- [ ] abrir link enviado;
+- [ ] Aprovar;
+- [ ] Rejeitar;
+- [ ] informar motivo opcional;
+- [ ] gerar notificação;
+- [ ] retirar conteúdo processado da fila;
+- [ ] tratar conteúdo já processado;
+- [ ] impedir ADMIN de moderar o próprio conteúdo;
+- [ ] proteger a área para usuários ADMIN.
+
+A autorização deve existir no backend e no banco, não apenas na interface.
+
+---
+
+# 15. Concorrência na Moderação
+
+A implementação deve impedir que duas decisões sejam aplicadas ao mesmo conteúdo.
+
+Exemplo:
+
+ADMIN A aprova
+→ status deixa de ser PENDENTE.
+
+ADMIN B tenta rejeitar o mesmo conteúdo
+→ sistema identifica que ele já foi processado
+→ segunda decisão não sobrescreve a primeira.
+
+---
+
+# 16. Notificações
+
+Implementar notificações para:
+
+- [ ] Material aprovado.
+- [ ] Material rejeitado.
+- [ ] Publicação aprovada.
+- [ ] Publicação rejeitada.
+- [ ] Oportunidade aprovada.
+- [ ] Oportunidade rejeitada.
+
+Também implementar:
+
+- [ ] badge numérico;
+- [ ] limite visual 9+;
+- [ ] não lidas;
+- [ ] marcar como lida;
+- [ ] marcar todas como lidas;
+- [ ] estado vazio;
+- [ ] motivo da rejeição quando houver.
+
+Ainda deverá ser definido o comportamento ao clicar em uma notificação.
+
+---
+
+# 17. URLs e segurança
+
+A implementação deverá validar links também no servidor.
+
+Regras previstas:
+
+- somente HTTP e HTTPS;
+- normalização segura quando aplicável;
+- GitHub deve utilizar domínio correspondente;
+- LinkedIn deve utilizar domínio correspondente;
+- links externos devem utilizar práticas seguras.
+
+Não confiar apenas na validação do frontend.
+
+---
+
+# 18. Limites de dados
+
+Antes ou durante a implementação deverão ser definidos limites para:
+
+- Nome de exibição;
+- Sobre mim;
+- quantidade de tags;
+- tamanho das tags;
+- título de material;
+- descrição de material;
+- título de oportunidade;
+- descrição de oportunidade;
+- título de publicação;
+- descrição de publicação;
+- motivo da rejeição.
+
+Esses valores ainda não estão definidos.
+
+---
+
+# 19. Acessibilidade
+
+Durante a implementação, garantir:
+
+- [ ] labels reais;
+- [ ] foco visível;
+- [ ] navegação por teclado;
+- [ ] foco preso em modais quando necessário;
+- [ ] retorno do foco após fechamento;
+- [ ] mensagens de erro associadas aos campos;
+- [ ] feedback de loading;
+- [ ] feedback de sucesso;
+- [ ] estados que não dependem apenas de cor;
+- [ ] links externos identificados;
+- [ ] aviso ao fechar a página quando existirem alterações não salvas.
+
+---
+
+# 20. Responsividade
+
+Implementar e testar:
+
+- [ ] sidebar desktop;
+- [ ] drawer mobile;
+- [ ] cards responsivos;
+- [ ] formulários em telas pequenas;
+- [ ] modais responsivos;
+- [ ] painel da Moderação responsivo;
+- [ ] ações acessíveis no mobile.
+
+---
+
+# 21. Testes técnicos
+
+Antes do piloto, realizar testes de:
+
+- [ ] Cadastro;
+- [ ] Login;
+- [ ] recuperação de senha;
+- [ ] autorização;
+- [ ] Perfil;
+- [ ] Estudos;
+- [ ] materiais;
+- [ ] Oportunidade;
+- [ ] Comunidade;
+- [ ] Perfil público;
+- [ ] Configurações;
+- [ ] Moderação;
+- [ ] notificações;
+- [ ] erros;
+- [ ] concorrência;
+- [ ] responsividade;
+- [ ] acessibilidade.
+
+---
+
+# 22. Ordem sugerida de implementação
+
+Uma ordem possível é:
+
+1. arquitetura e fundação;
+2. autenticação;
+3. layout global;
+4. Perfil;
+5. Home;
+6. Estudos;
+7. Oportunidade;
+8. Comunidade;
+9. Perfil público;
+10. núcleo de Moderação;
+11. notificações;
+12. Configurações;
+13. estados de erro e loading;
+14. responsividade;
+15. acessibilidade;
+16. testes;
+17. deploy;
+18. preparação do piloto.
+
+A ordem poderá ser ajustada após a definição da arquitetura.
+
+---
+
+# 23. Depois da implementação
+
+Com uma versão funcional será possível:
+
+1. realizar testes internos;
+2. corrigir problemas;
+3. preparar o piloto;
+4. selecionar disciplinas e participantes;
+5. revisar os Termos;
+6. realizar testes com estudantes;
+7. coletar feedback;
+8. analisar os resultados;
+9. priorizar melhorias;
+10. planejar a próxima versão do ConectaCC.
