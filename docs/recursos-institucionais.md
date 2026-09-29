@@ -165,6 +165,91 @@ O ConectaCC não deve copiar conteúdos de disciplinas mantidos no Moodle sem ne
 
 O objetivo é complementar a experiência e conectar o estudante aos recursos adequados.
 
+## 3.6 Grade Curricular — Ciência da Computação
+
+**Status:** ✅ Confirmado
+
+**URL:**
+
+https://inf.passofundo.ifsul.edu.br/src/bcc_grade/index.html
+
+**Fonte:**
+
+Instituto de Informática — IFSul Câmpus Passo Fundo.
+
+**Finalidade:**
+
+Página institucional com informações da Grade Curricular do Bacharelado em Ciência da Computação.
+
+A página disponibiliza atualmente informações relacionadas à:
+
+- Matriz 2023;
+- Matriz 2017;
+- disciplinas;
+- carga horária;
+- ementas;
+- Grade Completa.
+
+**Utilização prevista no ConectaCC:**
+
+Principal fonte institucional para:
+
+- catálogo de disciplinas;
+- informações acadêmicas das disciplinas;
+- carga horária;
+- acesso às ementas oficiais;
+- apoio ao preenchimento da área Estudos.
+
+Para o MVP, a:
+
+**Matriz 2023**
+
+será utilizada como referência acadêmica inicial.
+
+A necessidade de contemplar estudantes ainda vinculados à Matriz 2017 será verificada posteriormente.
+
+---
+
+## 3.7 Matriz de Pré-requisitos — Ciência da Computação
+
+**Status:** ✅ Confirmado
+
+**URL:**
+
+https://inf.passofundo.ifsul.edu.br/src/bcc_organograma/index.html
+
+**Fonte:**
+
+Instituto de Informática — IFSul Câmpus Passo Fundo.
+
+**Finalidade:**
+
+Apresentar a Matriz de Pré-requisitos do Bacharelado em Ciência da Computação — Matriz 2023.
+
+A página permite visualizar:
+
+- disciplinas por semestre;
+- pré-requisitos;
+- disciplinas dependentes;
+- relações entre componentes curriculares.
+
+**Utilização prevista no ConectaCC:**
+
+Pode servir como fonte institucional de referência para:
+
+- organização das disciplinas;
+- semestres;
+- relações de pré-requisito;
+- informações acadêmicas em Estudos.
+
+**Observação:**
+
+Apesar de a URL utilizar o termo `bcc_organograma`, o conteúdo da página corresponde à:
+
+**Matriz de Pré-requisitos**
+
+e não a um organograma administrativo ou institucional.
+
 ---
 
 # 4. Recursos institucionais a confirmar
@@ -217,24 +302,26 @@ Confirmar a fonte e URL institucional correta.
 
 ## 4.3 Ementas das disciplinas
 
-**Status:** 🔎 A mapear
+**Status:** ✅ Fonte institucional identificada
 
-As páginas de disciplina em Estudos poderão possuir:
+A página da Grade Curricular do Bacharelado em Ciência da Computação disponibiliza acesso às ementas das disciplinas.
+
+**URL da fonte principal:**
+
+https://inf.passofundo.ifsul.edu.br/src/bcc_grade/index.html
+
+Nas páginas de disciplina em Estudos poderá existir:
 
 **Acessar ementa oficial ↗**
 
-Somente quando houver URL confirmada.
+A implementação deverá utilizar os links institucionais disponibilizados pela própria Grade Curricular.
 
-**Pendências:**
+**Pendência de implementação:**
 
-- identificar onde estão as ementas oficiais;
-- verificar se existe uma URL por disciplina;
-- definir fonte institucional de referência;
-- relacionar cada disciplina à sua URL.
+- relacionar cada disciplina do catálogo à sua respectiva ementa oficial;
+- validar os links antes da disponibilização no sistema.
 
-Enquanto não houver confirmação:
-
-→ não utilizar link falso.
+Não deverão ser utilizados links inventados ou fontes não confirmadas.
 
 ---
 
@@ -360,6 +447,8 @@ recursos como:
 - Moodle;
 - Painel de Sistemas;
 - Instituto de Informática;
+- Grade Curricular;
+- Matriz de Pré-requisitos;
 - professores;
 - ementas;
 
@@ -369,8 +458,7 @@ A concepção original do projeto previa uma dimensão de orientação e acesso 
 
 Durante a simplificação do MVP, essa área deixou de existir como item independente da navegação.
 
-Essa decisão ainda precisa ser revisada.
-
+Antes da decisão definitiva, será concluído o levantamento dos recursos institucionais relevantes.
 ---
 
 # 8. Alternativas para Informações e Serviços
@@ -524,18 +612,27 @@ Conteúdos colaborativos passam por Moderação antes de serem disponibilizados.
 
 # 13. Próximos passos do mapeamento
 
-- [ ] revisar o Painel de Sistemas;
-- [ ] revisar o site do Instituto de Informática;
+Este levantamento será retomado após o checkpoint com a professora.
+
+Situação atual:
+
+- [x] identificar Painel de Sistemas;
+- [x] identificar site do Instituto de Informática;
+- [x] identificar SUAP;
+- [x] identificar Moodle;
+- [x] identificar Arena Games;
+- [x] identificar Grade Curricular do curso;
+- [x] identificar Matriz de Pré-requisitos;
+- [x] identificar fonte institucional das ementas;
+- [ ] relacionar cada disciplina à respectiva ementa durante a preparação dos dados;
 - [ ] localizar página oficial de Estágios;
 - [ ] localizar página oficial de Projetos de Extensão;
-- [ ] localizar ementas;
-- [ ] localizar informações de professores;
-- [ ] localizar organograma;
-- [ ] confirmar Instagram;
-- [ ] confirmar grupo de WhatsApp;
+- [ ] localizar informações oficiais de professores, se relevantes;
+- [ ] verificar organograma institucional / setores, se relevante;
+- [ ] confirmar Instagram institucional;
+- [ ] confirmar grupo de WhatsApp dos estudantes;
 - [ ] verificar outros recursos acadêmicos relevantes;
 - [ ] decidir a localização de Informações e Serviços dentro do ConectaCC.
-
 ---
 
 # 14. Princípio final
