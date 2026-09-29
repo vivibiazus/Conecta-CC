@@ -329,26 +329,61 @@ Upload adicionaria complexidade relacionada a:
 
 # 18. Autoria dos materiais
 
-## Decisão atual
+## Decisão atual do MVP
 
-Publicamente, o protótipo utiliza:
+Publicamente, os materiais aparecem como:
 
 **Compartilhado pela comunidade**
 
-O ADMIN consegue identificar o autor para:
+O ADMIN continua identificando o autor para:
 
 - Moderação;
-- notificação.
+- notificação;
+- controle interno do envio.
 
-## Status
+## Decisão futura
 
-A decisão definitiva sobre anonimato público permanece como hipótese a validar com estudantes.
+A decisão sobre exibir ou não a autoria dos materiais publicamente não será tomada neste semestre.
+
+Ela será retomada:
+
+**no próximo semestre, após os primeiros testes com estudantes.**
+
+Até essa avaliação, permanece o comportamento atual:
+
+**Compartilhado pela comunidade**
 
 ---
 
-# 19. Disciplinas piloto
+# 19. Catálogo acadêmico e disciplinas piloto
 
-## Decisão
+## Fonte acadêmica inicial
+
+A **Matriz 2023** do Bacharelado em Ciência da Computação do IFSul – Câmpus Passo Fundo será utilizada como referência acadêmica inicial do MVP.
+
+Fontes institucionais identificadas:
+
+### Grade Curricular
+
+https://inf.passofundo.ifsul.edu.br/src/bcc_grade/index.html
+
+### Matriz / Organograma de pré-requisitos
+
+https://inf.passofundo.ifsul.edu.br/src/bcc_organograma/index.html
+
+A Matriz 2023 organiza o curso do:
+
+**1º ao 8º semestre.**
+
+As fontes institucionais permitem obter informações como:
+
+- disciplinas;
+- carga horária;
+- ementas;
+- organização por semestre;
+- pré-requisitos.
+
+## Disciplinas piloto
 
 Todas as disciplinas confirmadas podem existir no Perfil e no catálogo de Estudos.
 
@@ -361,6 +396,12 @@ Somente algumas poderão inicialmente possuir:
 Essas serão utilizadas como disciplinas piloto.
 
 As disciplinas piloto ainda precisam ser escolhidas.
+
+## Matriz 2017
+
+A necessidade de contemplar estudantes ainda vinculados à Matriz 2017 será verificada posteriormente.
+
+Esse levantamento não é necessário para as atividades atuais e não bloqueia a definição da arquitetura.
 
 ---
 
@@ -379,6 +420,10 @@ No protótipo pode existir:
 **Link oficial a confirmar**
 
 Em produção, o link só aparece depois da confirmação da URL.
+
+O levantamento dos links institucionais que ainda faltam será retomado após o novo mapeamento.
+
+Esse levantamento é a próxima atividade de produto e não bloqueia a definição inicial da arquitetura.
 
 ---
 
@@ -416,16 +461,34 @@ Não permitir criação livre de novos tipos no MVP.
 
 ---
 
-# 23. Data pública de oportunidades
+# 23. Data pública dos conteúdos colaborativos
 
 ## Decisão
 
-Para oportunidades da comunidade:
+Para conteúdos que passam por Moderação, a data apresentada publicamente será:
 
-→ utilizar a data de aprovação/publicação como referência pública.
+**a data de aprovação/publicação.**
 
-A data original de envio permanece informação interna.
+A regra vale para:
 
+- Material;
+- Publicação;
+- Oportunidade.
+
+Exemplo:
+
+Conteúdo enviado na segunda-feira  
+→ permanece PENDENTE  
+→ ADMIN aprova na quarta-feira  
+→ publicamente aparece como publicado na quarta-feira.
+
+A data original de envio permanece como informação interna.
+
+## Motivo
+
+Um conteúdo só passa a existir publicamente depois da aprovação.
+
+Utilizar a data original do envio poderia fazer um conteúdo recém-publicado aparecer para os usuários como antigo.
 ---
 
 # 24. Comunidade
@@ -567,22 +630,37 @@ A implementação de token e validade será decidida na arquitetura.
 
 ---
 
-# 32. Confirmação de e-mail
+# 32. E-mail institucional e confirmação de cadastro
 
-## Status
+## E-mail aceito no MVP e no piloto
 
-Ainda não decidida definitivamente.
+O cadastro do MVP e do piloto será realizado utilizando:
 
-A confirmação de propriedade do e-mail deverá ser analisada antes do piloto.
+**e-mail institucional do IFSul.**
 
-Não confundir:
+A possibilidade de aceitar e-mails institucionais de outras instituições fica reservada para uma eventual expansão futura do ConectaCC para fora do IFSul.
 
-- validação de formato;
-- validação de domínio;
-- confirmação de propriedade.
+A confirmação técnica do domínio ou dos domínios exatos utilizados pelo IFSul será realizada durante a implementação.
 
-São questões diferentes.
+## Confirmação de propriedade do e-mail
 
+No MVP e no piloto:
+
+**não haverá confirmação de cadastro por link ou código enviado ao e-mail.**
+
+Essa funcionalidade poderá ser avaliada em uma evolução futura do ConectaCC.
+
+## Importante
+
+Continuam sendo questões diferentes:
+
+- validação do formato do e-mail;
+- validação do domínio institucional;
+- confirmação da propriedade do endereço.
+
+No MVP e no piloto serão aplicadas as validações necessárias de formato e domínio, mas não a confirmação de propriedade por link ou código.
+
+Essa decisão não altera o fluxo de recuperação de senha, que continuará utilizando envio de e-mail.
 ---
 
 # 33. Notificações
@@ -604,6 +682,18 @@ Tipos principais:
 - Oportunidade aprovada/rejeitada.
 
 Não criar página específica de notificações no MVP.
+
+## Decisão futura
+
+O comportamento ao clicar em uma notificação ainda será definido.
+
+Será necessário decidir, antes da implementação definitiva de Notificações:
+
+- se clicar marca automaticamente como lida;
+- se a notificação direciona ao conteúdo correspondente;
+- qual será o destino para cada tipo de conteúdo.
+
+Essa decisão não bloqueia a definição da arquitetura geral.
 
 ---
 
