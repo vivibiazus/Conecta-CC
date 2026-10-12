@@ -81,7 +81,7 @@ O MVP atual contempla:
 - Perfil público;
 - Configurações;
 - Notificações;
-- Moderação para ADMIN.
+- Moderação para MODERADOR e ADMINISTRADOR.
 
 O objetivo do MVP é validar a utilidade do ConectaCC antes da inclusão de funcionalidades mais complexas.
 
@@ -102,11 +102,11 @@ Na parte inferior:
 - Configurações
 - Sair
 
-### ADMIN
+### MODERADOR e ADMINISTRADOR
 
-Possui as mesmas áreas e também:
+Possuem as mesmas áreas e também acesso à Moderação, dentro da aplicação comum.
 
-- Moderação
+O painel administrativo em `/admin` é exclusivo do ADMINISTRADOR.
 
 ---
 
@@ -197,7 +197,7 @@ Antes de escrever o código definitivo, serão definidas decisões como:
 - backend;
 - banco de dados;
 - autenticação;
-- autorização ALUNO/ADMIN;
+- autorização ALUNO/MODERADOR/ADMINISTRADOR;
 - recuperação de senha;
 - hospedagem;
 - deploy;
