@@ -250,6 +250,8 @@ Antes do piloto real:
 
 → os Termos de participação deverão informar essa visibilidade explicitamente.
 
+> **Atualização (12/10/2026):** reconfirmada. Ver seção 51.
+
 ---
 
 # 14. Perfil público
@@ -352,6 +354,8 @@ Ela será retomada:
 Até essa avaliação, permanece o comportamento atual:
 
 **Compartilhado pela comunidade**
+
+> **Atualização (12/10/2026):** substituída. Agora o padrão é mostrar o Nome de exibição, com a opção “Publicar anonimamente”. Ver seção 51.
 
 ---
 
@@ -628,6 +632,8 @@ E-mail
 
 A implementação de token e validade será decidida na arquitetura.
 
+> **Atualização (12/10/2026):** a recuperação de senha saiu do MVP inicial. Ver seção 51.
+
 ---
 
 # 32. E-mail institucional e confirmação de cadastro
@@ -661,6 +667,8 @@ Continuam sendo questões diferentes:
 No MVP e no piloto serão aplicadas as validações necessárias de formato e domínio, mas não a confirmação de propriedade por link ou código.
 
 Essa decisão não altera o fluxo de recuperação de senha, que continuará utilizando envio de e-mail.
+
+> **Atualização (12/10/2026):** a recuperação de senha saiu do MVP inicial. Ver seção 51.
 ---
 
 # 33. Notificações
@@ -754,6 +762,8 @@ Seu conteúdo:
 Se ADMIN também utilizar a plataforma como estudante:
 
 → deverá existir mais de um ADMIN.
+
+> **Atualização (12/10/2026):** substituída. A restrição vale só para MODERADOR, e ADMINISTRADOR pode moderar o próprio conteúdo. Ver seção 51.
 
 ---
 
@@ -995,3 +1005,59 @@ Quando uma decisão técnica for tomada, registrar:
 - data da decisão.
 
 Isso permitirá manter histórico e reduzir retrabalho.
+
+---
+
+# 51. Rodada de atualização — 12/10/2026
+
+Decisões tomadas ao resolver as questões abertas da atualização do protótipo.
+
+## 51.1 Ações do autor sobre o próprio conteúdo
+
+O autor gerencia o próprio conteúdo pelo menu **⋯** no card público, tanto no conteúdo identificado quanto no anônimo.
+
+- Opções: **Editar** e **Excluir**.
+- O menu só aparece para o autor. Outros alunos não o veem.
+- No conteúdo anônimo, o card continua mostrando **Compartilhado pela Comunidade**.
+- Para o MODERADOR, a existência dessas ações não pode revelar quem é o autor anônimo.
+
+Com isso, anonimato passa a significar que a identidade do autor fica oculta para a comunidade e para o MODERADOR, mas o próprio autor reconhece e gerencia o seu conteúdo.
+
+**Editar:** Editar → alterar dados → Enviar alteração para análise. Enquanto a alteração estiver pendente, a versão pública antiga continua visível. Ela só é substituída depois da aprovação.
+
+**Excluir:** Excluir → modal de confirmação → confirmar. O conteúdo some das áreas públicas imediatamente (soft delete), sem depender da Moderação.
+
+## 51.2 MODERADOR e próprio conteúdo
+
+O conteúdo do próprio MODERADOR **não aparece na fila dele**. Ele é analisado por outro MODERADOR ou por um ADMINISTRADOR.
+
+## 51.3 Versão dos Termos de participação
+
+O texto dos Termos ganhou a regra de autoria e anonimato e **continua na versão 0.1**, porque nenhum usuário aceitou uma versão ainda.
+
+## 51.4 E-mail já cadastrado
+
+Fica a mensagem:
+
+> Não foi possível criar uma conta com este e-mail. Se você já possui cadastro, entre.
+
+Sem confirmação de e-mail no MVP, qualquer resposta diferente de “conta criada” já revela que o e-mail existe. A decisão foi só sobre o tom do texto. O trecho “ou recupere sua senha” saiu por causa da decisão 51.5.
+
+## 51.5 Recuperação de senha fora do MVP inicial
+
+Todo o fluxo de recuperação de senha fica para depois do MVP inicial.
+
+- O link “Esqueci minha senha” sai do Login.
+- As telas de recuperação ficam no protótipo marcadas como FUTURO.
+- Quem esquecer a senha **não terá tratamento** no MVP inicial, porque será uma versão fechada para poucos alunos.
+- Alterar a senha em Configurações, com o usuário logado, continua no MVP.
+
+Ao voltar, a recuperação deverá decidir o comportamento para link inválido, expirado ou já utilizado.
+
+## 51.6 Visibilidade das disciplinas atuais
+
+As disciplinas atuais ficam **visíveis para usuários autenticados**: no Perfil público e na busca da Comunidade. Isso reconfirma as seções 13 e 15.
+
+## 51.7 Título da seção no Perfil
+
+A seção que contém as Disciplinas atuais continua com o título **Minha jornada acadêmica**.
