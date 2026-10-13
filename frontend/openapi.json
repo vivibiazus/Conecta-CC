@@ -183,9 +183,7 @@
                     },
                     "terms_version": {
                         "type": "string",
-                        "enum": [
-                            "0.1"
-                        ]
+                        "description": "closure em vez de Rule::in: a vers\u00e3o vigente \u00e9 configura\u00e7\u00e3o e n\u00e3o deve virar enum no OpenAPI"
                     }
                 },
                 "required": [

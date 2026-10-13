@@ -101,8 +101,8 @@ export interface components {
             email: string;
             password: string;
             password_confirmation: string;
-            /** @enum {string} */
-            terms_version: "0.1";
+            /** @description closure em vez de Rule::in: a versão vigente é configuração e não deve virar enum no OpenAPI */
+            terms_version: string;
         };
         /**
          * Role

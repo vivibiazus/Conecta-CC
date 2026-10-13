@@ -3,9 +3,9 @@
 namespace App\Http\Requests;
 
 use App\Rules\InstitutionalEmail;
+use Closure;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Str;
-use Illuminate\Validation\Rule;
 
 final class RegisterRequest extends FormRequest
 {
@@ -26,7 +26,12 @@ final class RegisterRequest extends FormRequest
             'email' => ['bail', 'required', 'email', new InstitutionalEmail, 'unique:users,email'],
             'password' => ['required', 'string', 'min:8'],
             'password_confirmation' => ['required', 'same:password'],
-            'terms_version' => ['required', 'string', Rule::in([config('conectacc.terms_version')])],
+            // closure em vez de Rule::in: a versão vigente é configuração e não deve virar enum no OpenAPI
+            'terms_version' => ['required', 'string', function (string $attribute, mixed $value, Closure $fail): void {
+                if ($value !== config('conectacc.terms_version')) {
+                    $fail(self::TERMS_OUTDATED);
+                }
+            }],
         ];
     }
 
@@ -44,7 +49,6 @@ final class RegisterRequest extends FormRequest
             'password_confirmation.required' => 'As senhas informadas não coincidem.',
             'password_confirmation.same' => 'As senhas informadas não coincidem.',
             'terms_version.required' => self::TERMS_OUTDATED,
-            'terms_version.in' => self::TERMS_OUTDATED,
         ];
     }
 }
