@@ -23,10 +23,9 @@ jobs:
       run:
         working-directory: backend
     steps:
+      # sem bloco env: o runner imprime o env do passo antes de rodar, e o e-mail apareceria antes da máscara
       - name: Mascarar o e-mail no log (repositório público)
-        env:
-          EMAIL: ${{ inputs.email }}
-        run: echo "::add-mask::$EMAIL"
+        run: echo "::add-mask::$(jq -r '.inputs.email' "$GITHUB_EVENT_PATH")"
         working-directory: .
       - uses: actions/checkout@v4
       - uses: shivammathur/setup-php@v2
