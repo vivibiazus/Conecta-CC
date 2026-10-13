@@ -1,0 +1,50 @@
+services:
+  app:
+    build:
+      context: ./docker/sail/8.4
+      dockerfile: Dockerfile
+      args:
+        WWWGROUP: '${WWWGROUP:-1000}'
+    image: conectacc-sail-8.4
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+    ports:
+      - '${APP_PORT:-8000}:80'
+    environment:
+      WWWUSER: '${WWWUSER:-1000}'
+      LARAVEL_SAIL: 1
+    volumes:
+      - ./backend:/var/www/html
+      - backend-vendor:/var/www/html/vendor
+    depends_on:
+      pgsql:
+        condition: service_healthy
+      mailpit:
+        condition: service_started
+
+  pgsql:
+    image: postgres:17
+    ports:
+      - '${FORWARD_DB_PORT:-5433}:5432'
+    environment:
+      PGPASSWORD: password
+      POSTGRES_DB: conectacc
+      POSTGRES_USER: sail
+      POSTGRES_PASSWORD: password
+    volumes:
+      - pgsql-data:/var/lib/postgresql/data
+      - ./docker/pgsql/create-testing-database.sql:/docker-entrypoint-initdb.d/10-create-testing-database.sql
+    healthcheck:
+      test: ['CMD', 'pg_isready', '-q', '-d', 'conectacc', '-U', 'sail']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  mailpit:
+    image: axllent/mailpit:latest
+    ports:
+      - '${FORWARD_MAILPIT_DASHBOARD_PORT:-8026}:8025'
+
+volumes:
+  backend-vendor:
+  pgsql-data:
