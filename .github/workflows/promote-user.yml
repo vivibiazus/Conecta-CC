@@ -1,0 +1,45 @@
+name: Promover usuário
+
+on:
+  workflow_dispatch:
+    inputs:
+      email:
+        description: E-mail do usuário
+        required: true
+        type: string
+      role:
+        description: Novo papel
+        required: true
+        type: choice
+        options: [ALUNO, MODERADOR, ADMINISTRADOR]
+
+permissions:
+  contents: read
+
+jobs:
+  promote:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - name: Mascarar o e-mail no log (repositório público)
+        env:
+          EMAIL: ${{ inputs.email }}
+        run: echo "::add-mask::$EMAIL"
+        working-directory: .
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: pdo_pgsql
+          coverage: none
+      - run: composer install --no-dev --no-interaction --prefer-dist
+      - name: Alterar papel
+        env:
+          APP_ENV: production
+          DB_CONNECTION: pgsql
+          DB_URL: ${{ secrets.DATABASE_URL }}
+          EMAIL: ${{ inputs.email }}
+          ROLE: ${{ inputs.role }}
+        run: php artisan conectacc:promote "$EMAIL" "$ROLE"
