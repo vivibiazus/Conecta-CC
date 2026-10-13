@@ -1,0 +1,95 @@
+# Operação — ConectaCC
+
+Como subir o ambiente, rodar os testes e operar a produção.
+
+## Desenvolvimento
+
+Pré-requisito: Docker com Compose. PHP, Composer e Node não precisam estar instalados na máquina.
+
+Primeira vez:
+
+    make setup
+
+Depois:
+
+    make up        # sobe tudo
+    make down      # derruba
+
+Acesse **http://localhost:5173**. O Vite faz proxy de `/api`, `/sanctum` e `/up` para o Laravel, então o navegador vê uma única origem, como em produção.
+
+| Endereço | O que é |
+|---|---|
+| http://localhost:5173 | aplicação |
+| http://localhost:8000/docs/api | documentação da API (OpenAPI) |
+| http://localhost:8026 | Mailpit (e-mails capturados) |
+| localhost:5433 | PostgreSQL (usuário `sail`, senha `password`, banco `conectacc`) |
+
+As portas do Postgres e do Mailpit na máquina podem ser trocadas pelas variáveis `FORWARD_DB_PORT` e `FORWARD_MAILPIT_DASHBOARD_PORT` (por exemplo, num arquivo `.env` na raiz do repositório).
+
+### Contas de teste
+
+Criadas pelos seeders (só em desenvolvimento). Senha de todas: `password`.
+
+| E-mail | Papel |
+|---|---|
+| aluno@academico.ifsul.edu.br | ALUNO |
+| moderador@academico.ifsul.edu.br | MODERADOR |
+| moderador2@academico.ifsul.edu.br | MODERADOR |
+| admin@academico.ifsul.edu.br | ADMINISTRADOR |
+
+### Comandos
+
+| Comando | O que faz |
+|---|---|
+| `make migrate` | roda migrations pendentes |
+| `make fresh` | recria o banco com os seeders |
+| `make test` | testes da API (Pest, contra PostgreSQL) |
+| `make lint` | Pint, Larastan, ESLint e TypeScript |
+| `make api-types` | exporta o OpenAPI e regenera os tipos do front; rode sempre que mudar a API e commite `frontend/openapi.json` e `frontend/src/lib/api/schema.d.ts` |
+| `make shell` | terminal dentro do container do Laravel |
+
+Para ter os tipos no editor, rode também `npm install` dentro de `frontend/` na sua máquina.
+
+Os limites de tentativas (5 por minuto no Login e no Cadastro) usam o cache do Laravel. Para zerá-los durante testes manuais: `docker compose exec -u sail app php artisan cache:clear`.
+
+## Variáveis de ambiente
+
+| Variável | Onde | Para quê |
+|---|---|---|
+| `APP_KEY` | Render | chave do Laravel (`php artisan key:generate --show`) |
+| `APP_URL` | Render | URL pública do serviço |
+| `DB_URL` | Render | connection string do Neon (com `sslmode=require`) |
+| `SANCTUM_STATEFUL_DOMAINS` | Render | host público, sem `https://` |
+| `ALLOWED_EMAIL_DOMAINS` | Render (já no `render.yaml`) | domínios aceitos no Cadastro, separados por vírgula |
+| `TERMS_VERSION` | Render (já no `render.yaml`) | versão vigente dos Termos (arquivo em `backend/resources/terms/`) |
+| `SENTRY_LARAVEL_DSN` | Render | DSN do Sentry para o backend (vazio = desligado) |
+| `VITE_SENTRY_DSN` | Render | DSN do Sentry para o front, usado no build (vazio = desligado) |
+| `RENDER_DEPLOY_HOOK_URL` | GitHub (secret) | URL do deploy hook do Render |
+| `DATABASE_URL` | GitHub (secret) | connection string do Neon, usada só pelo workflow "Promover usuário" |
+
+## Primeira publicação
+
+Todas as contas pertencem à conta Google do projeto (decisão 9).
+
+1. **Neon:** criar um projeto (Postgres 17) e copiar a connection string.
+2. **Render:** New → Blueprint → apontar para o repositório. O `render.yaml` cria o serviço; preencher as variáveis marcadas como `sync: false`.
+3. **Render:** em Settings → Deploy Hook, copiar a URL e cadastrá-la no GitHub como secret `RENDER_DEPLOY_HOOK_URL`.
+4. **GitHub:** cadastrar o secret `DATABASE_URL` com a connection string do Neon.
+5. **Sentry (opcional):** criar dois projetos (Laravel e React) e preencher os DSNs no Render.
+6. Fazer merge na `main`. O CI roda e, se passar, o workflow Deploy chama o Render. As migrations rodam na inicialização do container.
+7. **Primeiro ADMINISTRADOR:** a pessoa se cadastra pelo site; depois, no GitHub, Actions → "Promover usuário" → Run workflow → e-mail e papel `ADMINISTRADOR`.
+
+## Configuração do repositório (admin)
+
+1. Settings → Code security → **Secret scanning: Enable** e **Push protection: Enable**.
+2. Settings → Branches → regra para `main`: exigir pull request e os checks `backend`, `frontend`, `docker` e `gitleaks`.
+
+## Mudar o papel de alguém em produção
+
+Actions → **Promover usuário** → Run workflow, informando e-mail e papel. O e-mail é mascarado no log e o comando não o imprime. Só quem tem permissão de escrita no repositório consegue disparar. O Render gratuito não tem Shell, por isso o comando roda no GitHub Actions.
+
+## Trocar os Termos de participação
+
+1. Criar `backend/resources/terms/<nova versão>.json` com o texto.
+2. Atualizar `TERMS_VERSION` no Render e no `render.yaml`.
+3. Quem estiver no meio de um cadastro verá "Os Termos de participação foram atualizados. Leia e aceite novamente.".
