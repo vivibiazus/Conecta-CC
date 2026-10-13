@@ -1,0 +1,45 @@
+services:
+  - type: web
+    name: conectacc
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /up
+    autoDeploy: false # o deploy é disparado pelo deploy.yml depois do CI verde
+    envVars:
+      - key: APP_NAME
+        value: ConectaCC
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: 'false'
+      - key: APP_LOCALE
+        value: pt_BR
+      - key: PORT
+        value: '8080'
+      - key: LOG_CHANNEL
+        value: stderr
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: SESSION_DRIVER
+        value: database
+      - key: SESSION_LIFETIME
+        value: '10080'
+      - key: SESSION_SECURE_COOKIE
+        value: 'true'
+      - key: ALLOWED_EMAIL_DOMAINS
+        value: academico.ifsul.edu.br
+      - key: TERMS_VERSION
+        value: '0.1'
+      - key: APP_KEY
+        sync: false
+      - key: APP_URL
+        sync: false
+      - key: DB_URL
+        sync: false
+      - key: SANCTUM_STATEFUL_DOMAINS
+        sync: false
+      - key: SENTRY_LARAVEL_DSN
+        sync: false
+      - key: VITE_SENTRY_DSN
+        sync: false
