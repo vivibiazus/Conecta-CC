@@ -56,6 +56,9 @@ return [
     // Configures which data is collected automatically, `null` keeps collecting data based on `send_default_pii`
     'data_collection' => null,
 
+    // decisão 8: nunca enviar corpo de requisição (o login carrega a senha)
+    'max_request_body_size' => 'never',
+
     // @see: https://docs.sentry.io/platforms/php/guides/laravel/configuration/options/#ignore_exceptions
     // 'ignore_exceptions' => [],
 
