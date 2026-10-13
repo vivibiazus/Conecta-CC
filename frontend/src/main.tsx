@@ -1,13 +1,15 @@
+import { QueryClientProvider } from '@tanstack/react-query';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+import { RouterProvider } from 'react-router';
+import { router } from '@/app/router';
+import { queryClient } from '@/lib/queryClient';
 import './index.css';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <main className="grid min-h-dvh place-items-center bg-navy-950 font-display text-5xl font-bold text-white">
-      <span>
-        Conecta<span className="text-glow">CC</span>
-      </span>
-    </main>
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
   </StrictMode>,
 );
