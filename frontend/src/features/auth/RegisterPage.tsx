@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
+import { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router';
 import { FormAlert } from '@/components/FormAlert';
@@ -21,6 +22,10 @@ type Problem = { kind: 'message'; message: string } | { kind: 'network' };
 export function RegisterPage() {
   const navigate = useNavigate();
   const registerAccount = useRegister();
+  const queryClient = useQueryClient();
+  // campo que recebe o foco quando o modal fecha por erro do servidor (senão o Radix devolve o foco ao botão)
+  const focusAfterClose = useRef<(typeof FIELDS)[number] | null>(null);
+  const submitRef = useRef<HTMLButtonElement>(null);
   const [termsOpen, setTermsOpen] = useState(false);
   const [problem, setProblem] = useState<Problem | null>(null);
   const {
@@ -28,6 +33,7 @@ export function RegisterPage() {
     handleSubmit,
     getValues,
     setError,
+    setFocus,
     formState: { errors },
   } = useForm<FormValues>({ defaultValues: { name: '', email: '', password: '', password_confirmation: '' } });
 
@@ -42,8 +48,10 @@ export function RegisterPage() {
       await registerAccount.mutateAsync({ ...values, terms_version: termsVersion });
       navigate('/login', { state: { registeredEmail: values.email.trim().toLowerCase() } });
     } catch (error) {
-      setTermsOpen(false);
       if (error instanceof ApiError && error.status === 422) {
+        // versão dos Termos mudou: buscar o texto novo antes de a pessoa aceitar de novo
+        if (error.fieldErrors.terms_version) queryClient.invalidateQueries({ queryKey: ['terms'] });
+        focusAfterClose.current = FIELDS.find((field) => error.fieldErrors[field]) ?? null;
         const rest = applyFieldErrors(setError, error.fieldErrors, FIELDS);
         const other = Object.values(rest)[0]?.[0];
         if (other) setProblem({ kind: 'message', message: other });
@@ -52,7 +60,16 @@ export function RegisterPage() {
       } else {
         setProblem({ kind: 'network' });
       }
+      setTermsOpen(false);
     }
+  };
+
+  // o modal abre pelo envio do formulário, sem gatilho do Radix: o foco precisa ser devolvido à mão
+  const restoreFocus = (event: Event) => {
+    event.preventDefault();
+    if (focusAfterClose.current) setFocus(focusAfterClose.current);
+    else submitRef.current?.focus();
+    focusAfterClose.current = null;
   };
 
   const emailError =
@@ -130,7 +147,7 @@ export function RegisterPage() {
           })}
         />
 
-        <Button type="submit" className="h-12 w-full text-base font-semibold">
+        <Button ref={submitRef} type="submit" className="h-12 w-full text-base font-semibold">
           Criar minha conta
         </Button>
       </form>
@@ -143,7 +160,7 @@ export function RegisterPage() {
         </Link>
       </p>
 
-      <TermsDialog open={termsOpen} onOpenChange={setTermsOpen} onAccept={createAccount} submitting={registerAccount.isPending} />
+      <TermsDialog open={termsOpen} onOpenChange={setTermsOpen} onAccept={createAccount} submitting={registerAccount.isPending} onCloseAutoFocus={restoreFocus} />
     </AuthLayout>
   );
 }

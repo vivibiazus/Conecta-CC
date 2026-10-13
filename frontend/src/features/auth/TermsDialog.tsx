@@ -11,12 +11,13 @@ type Props = {
   onOpenChange: (open: boolean) => void;
   onAccept: (version: string) => void;
   submitting: boolean;
+  onCloseAutoFocus?: (event: Event) => void;
 };
 
-export function TermsDialog({ open, onOpenChange, ...props }: Props) {
+export function TermsDialog({ open, onOpenChange, onCloseAutoFocus, ...props }: Props) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="flex max-h-[92dvh] w-[calc(100%-2rem)] max-w-2xl flex-col gap-0 overflow-hidden p-0 sm:max-w-2xl">
+      <DialogContent onCloseAutoFocus={onCloseAutoFocus} className="flex max-h-[92dvh] w-[calc(100%-2rem)] max-w-2xl flex-col gap-0 overflow-hidden p-0 sm:max-w-2xl">
         <TermsContent onClose={() => onOpenChange(false)} {...props} />
       </DialogContent>
     </Dialog>
@@ -24,10 +25,12 @@ export function TermsDialog({ open, onOpenChange, ...props }: Props) {
 }
 
 // montado só com o modal aberto: o aceite começa desmarcado a cada abertura
-function TermsContent({ onClose, onAccept, submitting }: Omit<Props, 'open' | 'onOpenChange'> & { onClose: () => void }) {
+function TermsContent({ onClose, onAccept, submitting }: Pick<Props, 'onAccept' | 'submitting'> & { onClose: () => void }) {
   const terms = useTerms();
   const [accepted, setAccepted] = useState(false);
   const checkboxId = useId();
+  // enquanto busca uma versão nova dos Termos, o texto em cache pode estar desatualizado
+  const ready = Boolean(terms.data) && !terms.isFetching;
 
   return (
     <>
@@ -64,7 +67,7 @@ function TermsContent({ onClose, onAccept, submitting }: Omit<Props, 'open' | 'o
               id={checkboxId}
               checked={accepted}
               onCheckedChange={(value) => setAccepted(value === true)}
-              disabled={!terms.data}
+              disabled={!ready}
               className="mt-1 size-5"
             />
             <Label htmlFor={checkboxId} className="text-base font-normal leading-relaxed text-foreground">
@@ -77,8 +80,8 @@ function TermsContent({ onClose, onAccept, submitting }: Omit<Props, 'open' | 'o
             </Button>
             <Button
               type="button"
-              disabled={!accepted || submitting || !terms.data}
-              onClick={() => terms.data && onAccept(terms.data.version)}
+              disabled={!accepted || submitting || !ready}
+              onClick={() => ready && terms.data && onAccept(terms.data.version)}
               className="h-12 px-8 text-base font-semibold disabled:bg-slate-300 disabled:text-slate-600 disabled:opacity-100"
             >
               {submitting ? (
