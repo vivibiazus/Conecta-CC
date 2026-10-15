@@ -163,6 +163,8 @@ A possibilidade de aceitar e-mails institucionais de outras instituições será
 
 A confirmação técnica do domínio ou dos domínios exatos utilizados pelo IFSul poderá ser realizada durante a implementação.
 
+> **Domínio adotado (12/10/2026):** `academico.ifsul.edu.br`, configurável por `ALLOWED_EMAIL_DOMAINS`.
+
 Isso não altera a regra de produto:
 
 **MVP e piloto = e-mail institucional do IFSul.**
@@ -266,6 +268,8 @@ A decisão deve contemplar:
 - alteração autenticada de senha;
 - recuperação de senha.
 
+> **Continua aberta (12/10/2026):** a duração da sessão foi definida (7 dias sem uso), mas o comportamento das outras sessões após trocar a senha será decidido na etapa de Configurações.
+
 ---
 
 ## 2.6 Tentativas de Login
@@ -278,6 +282,8 @@ Definir futuramente:
 - outras medidas de segurança.
 
 Não existe regra definitiva no protótipo.
+
+> **Resolvida (12/10/2026):** 5 tentativas por minuto por e-mail + IP, sem bloqueio de conta. Ver `implementacao.md` §4.
 
 ---
 
@@ -473,7 +479,7 @@ Antes dos testes com estudantes:
 - [ ] definir participantes;
 - [ ] revisar Termos;
 - [ ] concluir levantamento dos links institucionais necessários;
-- [ ] confirmar o domínio técnico utilizado para validar e-mails institucionais do IFSul;
+- [x] confirmar o domínio técnico utilizado para validar e-mails institucionais do IFSul (`academico.ifsul.edu.br`);
 - [ ] preparar formulário ou instrumento de feedback;
 - [ ] definir o que será observado durante os testes;
 - [ ] preparar ambiente funcional;

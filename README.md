@@ -81,7 +81,7 @@ O MVP atual contempla:
 - Perfil público;
 - Configurações;
 - Notificações;
-- Moderação para ADMIN.
+- Moderação para MODERADOR e ADMINISTRADOR.
 
 O objetivo do MVP é validar a utilidade do ConectaCC antes da inclusão de funcionalidades mais complexas.
 
@@ -102,11 +102,11 @@ Na parte inferior:
 - Configurações
 - Sair
 
-### ADMIN
+### MODERADOR e ADMINISTRADOR
 
-Possui as mesmas áreas e também:
+Possuem as mesmas áreas e também acesso à Moderação, dentro da aplicação comum.
 
-- Moderação
+O painel administrativo em `/admin` é exclusivo do ADMINISTRADOR.
 
 ---
 
@@ -150,8 +150,8 @@ Atualmente:
 - ✅ requisitos documentados;
 - ✅ dez áreas do MVP prototipadas;
 - ✅ auditoria geral do protótipo realizada;
-- ⏳ arquitetura técnica a definir;
-- ⏳ implementação a iniciar;
+- ✅ arquitetura técnica definida;
+- 🚧 implementação em andamento;
 - ⏳ testes técnicos;
 - ⏳ preparação do piloto;
 - ⏳ validação com estudantes.
@@ -187,23 +187,15 @@ A documentação do projeto está organizada em:
 
 ## Estado da implementação
 
-A implementação funcional ainda será iniciada.
+Fundação técnica, Cadastro, Login e Home implementados (ver [`docs/specs/2026-10-12-fundacao-design.md`](docs/specs/2026-10-12-fundacao-design.md)).
 
-Antes de escrever o código definitivo, serão definidas decisões como:
+As decisões de stack e arquitetura estão em [`docs/stack-e-decisoes-tecnicas.md`](docs/stack-e-decisoes-tecnicas.md). Elas são conduzidas principalmente por **Marcelo Henrique Germiniani Panho**, com revisão da equipe para garantir aderência aos requisitos definidos.
 
-- stack;
-- arquitetura;
-- frontend;
-- backend;
-- banco de dados;
-- autenticação;
-- autorização ALUNO/ADMIN;
-- recuperação de senha;
-- hospedagem;
-- deploy;
-- estratégia de testes.
+---
 
-Essas decisões serão conduzidas principalmente por **Marcelo Henrique Germiniani Panho**, com revisão da equipe para garantir aderência aos requisitos definidos.
+## Desenvolvimento local
+
+Requer Docker. Rode `make setup` na primeira vez e acesse http://localhost:5173. Detalhes em [`docs/operacao.md`](docs/operacao.md).
 
 ---
 

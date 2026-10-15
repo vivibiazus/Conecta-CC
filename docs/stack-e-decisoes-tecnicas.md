@@ -1,6 +1,6 @@
 # ConectaCC — Stack e Decisões Técnicas
 
-Última atualização: 12/10/2026
+Última atualização: 13/10/2026
 
 O ConectaCC é uma API REST em Laravel consumida por uma SPA em React, publicadas juntas numa imagem Docker no Render, com PostgreSQL no Neon e todos os serviços externos em planos gratuitos. Este documento registra apenas a stack e as decisões de tecnologia: o que foi escolhido e por quê. As regras de como cada parte funciona (autenticação, papéis, moderação, modelo de dados, convenções de código) ficam no documento de Implementação.
 
@@ -16,7 +16,7 @@ flowchart TB
     end
     DB[("PostgreSQL · Neon (plano Free)<br/>dados da aplicação e sessões")]
     GH["GitHub Actions<br/>CI, deploy e backup"]
-    GM["Gmail SMTP<br/>recuperação de senha"]
+    GM["Gmail SMTP<br/>e-mails da aplicação"]
     SE["Sentry<br/>erros do back e do front"]
     MO["Monitor externo<br/>acessa /up a cada 10 min"]
 
@@ -38,7 +38,7 @@ Cada tecnologia abaixo está justificada na decisão indicada entre parênteses.
 
 | Componente            | Escolha                                                        |
 | --------------------- | -------------------------------------------------------------- |
-| Linguagem e framework | PHP 8.3+ e Laravel, versão estável atual, usado como API (2) |
+| Linguagem e framework | PHP 8.4 e Laravel 13, usado como API (2) |
 | Autenticação        | Laravel Sanctum (2)                                            |
 | Validação           | Form Requests (2)                                              |
 | Autorização         | Policies e Gates (2)                                           |
@@ -77,13 +77,18 @@ Cada tecnologia abaixo está justificada na decisão indicada entre parênteses.
 | Erros                             | Sentry, plano gratuito (8)                              |
 | Repositório, CI, deploy e backup | GitHub e GitHub Actions (9, 10)                         |
 | Desenvolvimento                   | Docker Compose (Sail) com PHP, PostgreSQL e Mailpit (9) |
+| Runtime da imagem                 | `serversideup/php:8.4-fpm-nginx` (9)                    |
+| Banco em dev, CI e produção       | PostgreSQL 17 (4)                                       |
+| Node                              | 24 LTS, npm (3)                                         |
+| Fontes                            | Plus Jakarta Sans + Inter, auto-hospedadas (`@fontsource-variable`) |
 
 **Qualidade**
 
 | Componente            | Escolha                                                 |
 | --------------------- | ------------------------------------------------------- |
 | Testes de API         | Pest (11)                                               |
-| Análise estática    | Pint, Larastan, ESLint (com`jsx-a11y`) e `tsc` (11) |
+| Análise estática    | Pint, Larastan (nível 6), ESLint (com`jsx-a11y`) e `tsc` (11) |
+| Segredos              | gitleaks no CI + secret scanning do GitHub (9)          |
 | Front e ponta a ponta | Vitest e Playwright (11)                                |
 
 ## Decisões: arquitetura e stack
@@ -148,7 +153,7 @@ As decisões seguem o formato do `decisoes.md`: o que foi decidido, por quê, o 
 
 ### 5. Painel administrativo
 
-**Decisão.** Filament em `/admin`, acessível somente a ADMIN. O painel serve para:
+**Decisão.** Filament em `/admin`, acessível somente a ADMINISTRADOR. O painel serve para:
 
 - gestão de usuários e papéis;
 - consulta de moderações;
@@ -180,11 +185,11 @@ O que cada função do painel pode fazer está definido no documento de Implemen
 - Oracle Always Free: única VM gratuita sem hibernação, mas exige cartão, teve cota reduzida em 2026 e pode recuperar instâncias ociosas;
 - Supabase como banco: pausa projetos após 7 dias sem uso.
 
-**Consequência.** A defesa contra mudanças nos planos gratuitos é a portabilidade: imagem Docker, configuração só em variáveis de ambiente e Postgres padrão. Trocar de provedor, inclusive para hospedagem institucional, é trocar a connection string e refazer o deploy. Resolve a pendência 2.1.
+**Consequência.** A defesa contra mudanças nos planos gratuitos é a portabilidade: imagem Docker, configuração só em variáveis de ambiente e Postgres padrão. Trocar de provedor, inclusive para hospedagem institucional, é trocar a connection string e refazer o deploy. Resolve a pendência 2.1. O Render gratuito não tem Shell: comandos administrativos (como mudar o papel de um usuário) rodam pelo workflow "Promover usuário" no GitHub Actions.
 
 ### 7. E-mail
 
-**Decisão.** E-mail de recuperação de senha pelo SMTP do Gmail, com senha de app, na conta Google do projeto. Envio síncrono, sem fila. Mailpit no desenvolvimento.
+**Decisão.** E-mails da aplicação (recuperação de senha, se implementada — decisoes.md 52.9) pelo SMTP do Gmail, com senha de app, na conta Google do projeto. Envio síncrono, sem fila. Mailpit no desenvolvimento.
 
 **Motivo.** Sem domínio próprio, provedores transacionais não conseguem autenticar o remetente; o Gmail envia pelos servidores do Google.
 

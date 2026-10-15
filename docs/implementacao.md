@@ -63,18 +63,20 @@ Essa etapa será conduzida principalmente por Marcelo Henrique Germiniani Panho,
 
 # 3. Fundação do projeto
 
-- [ ] Definir stack.
-- [ ] Definir arquitetura.
-- [ ] Definir estrutura de pastas do código.
-- [ ] Configurar ambiente de desenvolvimento.
-- [ ] Configurar banco de dados.
-- [ ] Configurar autenticação.
-- [ ] Configurar papéis ALUNO e ADMIN.
-- [ ] Implementar autorização no backend.
-- [ ] Configurar variáveis de ambiente.
-- [ ] Definir estratégia de branches e commits.
-- [ ] Definir ambiente de hospedagem.
-- [ ] Definir estratégia de deploy.
+- [x] Definir stack.
+- [x] Definir arquitetura.
+- [x] Definir estrutura de pastas do código.
+- [x] Configurar ambiente de desenvolvimento.
+- [x] Configurar banco de dados.
+- [x] Configurar autenticação.
+- [x] Configurar papéis ALUNO, MODERADOR e ADMINISTRADOR.
+- [ ] Implementar autorização no backend (por enquanto, só a Gate de Moderação).
+- [x] Configurar variáveis de ambiente.
+- [x] Definir estratégia de branches e commits.
+- [x] Definir ambiente de hospedagem.
+- [x] Definir estratégia de deploy.
+
+Detalhes da fundação: `docs/specs/2026-10-12-fundacao-design.md` e `docs/operacao.md`.
 
 ---
 
@@ -82,17 +84,17 @@ Essa etapa será conduzida principalmente por Marcelo Henrique Germiniani Panho,
 
 Implementar:
 
-- [ ] Login.
-- [ ] Cadastro.
-- [ ] validação do formato do e-mail.
-- [ ] validação do domínio institucional do IFSul.
-- [ ] Termos de participação versionados.
-- [ ] registro do aceite dos Termos somente após criação da conta.
-- [ ] Logout.
-- [ ] Recuperação de senha.
-- [ ] envio de link de recuperação por e-mail.
-- [ ] validação do link de recuperação.
-- [ ] proteção de rotas autenticadas.
+- [x] Login.
+- [x] Cadastro.
+- [x] validação do formato do e-mail.
+- [x] validação do domínio institucional do IFSul.
+- [x] Termos de participação versionados.
+- [x] registro do aceite dos Termos somente após criação da conta.
+- [x] Logout.
+- [ ] Recuperação de senha (opcional — decisoes.md 52.9).
+- [ ] envio de link de recuperação por e-mail (opcional — decisoes.md 52.9).
+- [ ] validação do link de recuperação (opcional — decisoes.md 52.9).
+- [x] proteção de rotas autenticadas.
 
 ## E-mail institucional
 
@@ -118,12 +120,21 @@ Essa decisão não altera a recuperação de senha, que continuará utilizando e
 
 ## Decisões técnicas de autenticação ainda necessárias
 
-- [ ] definir limite ou bloqueio após várias tentativas de Login;
-- [ ] definir política de sessões;
+- [x] definir limite ou bloqueio após várias tentativas de Login;
+- [x] definir política de sessões;
 - [ ] definir comportamento das outras sessões após alteração de senha;
 - [ ] definir comportamento das outras sessões após recuperação de senha;
 - [ ] definir formato, segurança e validade do link de recuperação;
 - [ ] definir provedor responsável pelo envio dos e-mails.
+
+## Regras adotadas (12/10/2026)
+
+- **Tentativas:** 5 por minuto por combinação e-mail + IP no Login e 5 por minuto por IP no Cadastro. Ao estourar, a resposta é "Muitas tentativas. Tente novamente em X segundos.". Não há bloqueio de conta, para evitar que alguém tranque a conta de um colega de propósito.
+- **Sessão:** guardada no PostgreSQL, válida por 7 dias sem uso e renovada a cada acesso; não expira ao fechar o navegador. Não há "Lembrar de mim".
+- **Papéis:** enum `Role` (`ALUNO`, `MODERADOR`, `ADMINISTRADOR`) com `CHECK` no banco; a Gate `access-moderation` libera MODERADOR e ADMINISTRADOR. Toda conta criada pelo Cadastro nasce ALUNO.
+- **Aceite dos Termos:** gravado na mesma transação que cria a conta (versão + data/hora + usuário). O texto vigente vem do backend (`backend/resources/terms/<versão>.json`).
+- **Domínio aceito:** `academico.ifsul.edu.br`, configurável por `ALLOWED_EMAIL_DOMAINS`. A comparação é exata: subdomínios e sufixos são recusados.
+- **Mudança de papel:** pelo comando `conectacc:promote`, executado em produção pelo workflow "Promover usuário" do GitHub Actions (o Render gratuito não tem Shell).
 
 ---
 
@@ -131,15 +142,15 @@ Essa decisão não altera a recuperação de senha, que continuará utilizando e
 
 Implementar os componentes compartilhados das telas autenticadas:
 
-- [ ] Sidebar.
-- [ ] Header.
-- [ ] Avatar com iniciais.
-- [ ] Nome de exibição.
-- [ ] Sino de notificações.
+- [x] Sidebar.
+- [x] Header.
+- [x] Avatar com iniciais.
+- [x] Nome de exibição.
+- [ ] Sino de notificações (por enquanto, só o ícone).
 - [ ] Badge de notificações.
-- [ ] Menu mobile em formato de drawer.
-- [ ] Estados de loading.
-- [ ] Estados de erro.
+- [x] Menu mobile em formato de drawer.
+- [x] Estados de loading.
+- [x] Estados de erro.
 - [ ] Componentes compartilhados.
 
 A navegação deve diferenciar corretamente:

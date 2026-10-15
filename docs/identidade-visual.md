@@ -280,7 +280,7 @@ Características desejadas:
 - funcionamento em desktop e mobile;
 - suporte adequado a caracteres em português.
 
-A escolha definitiva deverá ser registrada antes da implementação visual final.
+**Decisão (12/10/2026):** Plus Jakarta Sans em títulos e na marca; Inter no corpo, labels e botões. Fontes auto-hospedadas (pacotes `@fontsource-variable`), sem chamada ao Google Fonts.
 
 Não utilizar fontes excessivamente decorativas no corpo da interface.
 

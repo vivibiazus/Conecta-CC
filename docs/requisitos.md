@@ -15,10 +15,21 @@ Os requisitos descritos aqui representam decisões de produto e não definem, po
 
 # 1. Papéis de usuário
 
-O MVP possui dois papéis principais:
+O MVP possui três papéis:
 
 - ALUNO
-- ADMIN
+- MODERADOR
+- ADMINISTRADOR
+
+Representação conceitual do nível de acesso:
+
+ADMINISTRADOR
+↓
+MODERADOR
+↓
+ALUNO
+
+Isso **não significa herança técnica automática**. A implementação usa permissões específicas (Policies e Gates).
 
 ## 1.1 ALUNO
 
@@ -26,35 +37,74 @@ O usuário ALUNO pode:
 
 - criar conta;
 - realizar Login;
-- recuperar senha;
+- recuperar senha, se a recuperação for implementada no MVP;
 - acessar Home;
 - editar o próprio Perfil;
+- selecionar disciplinas atuais;
 - acessar Estudos;
 - acessar Oportunidade;
 - acessar Comunidade;
 - consultar Perfis públicos;
 - acessar Configurações;
+- alterar a própria senha;
 - receber notificações;
-- enviar conteúdos para análise.
+- enviar conteúdos para análise, identificados ou anônimos;
+- consultar e gerenciar os próprios conteúdos em Perfil → Meus conteúdos;
+- editar e excluir conteúdos de sua própria autoria, conforme as regras definidas.
 
 O usuário ALUNO não pode:
 
 - acessar a área de Moderação;
 - consultar conteúdos pendentes de outros usuários;
 - aprovar conteúdos;
-- rejeitar conteúdos.
-
-## 1.2 ADMIN
-
-O ADMIN possui as funcionalidades comuns de usuário e também pode:
-
-- acessar Moderação;
-- consultar conteúdos pendentes;
-- aprovar conteúdos;
 - rejeitar conteúdos;
-- informar motivo opcional da rejeição.
+- visualizar informações administrativas;
+- alterar papéis;
+- gerenciar permissões.
 
-O ADMIN não pode moderar o próprio conteúdo.
+## 1.2 MODERADOR
+
+O MODERADOR é um usuário com permissões adicionais para auxiliar na Moderação. Possui as funcionalidades comuns do usuário e também pode:
+
+- acessar as funções de Moderação que forem permitidas;
+- analisar Material, Publicação e Oportunidade;
+- aprovar solicitações permitidas;
+- rejeitar solicitações permitidas, informando o motivo (obrigatório);
+- solicitar revisão/remoção de conteúdo já publicado.
+
+Regras:
+
+- somente ADMINISTRADOR pode nomear MODERADOR;
+- a Moderação do MODERADOR fica dentro da aplicação comum, **fora do `/admin`**;
+- o MODERADOR **não acessa `/admin`**;
+- o MODERADOR não pode criar ou remover MODERADORES, criar ADMINISTRADORES, alterar papéis nem gerenciar permissões;
+- o MODERADOR não acessa informações administrativas que não sejam necessárias.
+
+### Conflito de interesse
+
+O MODERADOR **não pode moderar o próprio conteúdo**, inclusive quando enviado anonimamente.
+
+O conteúdo do próprio MODERADOR **não aparece na fila dele**; ele é analisado por outro MODERADOR ou por um ADMINISTRADOR.
+
+O MODERADOR **nunca vê a identidade real** do autor de conteúdo anônimo. Ele vê a autoria como “Comunidade”.
+
+## 1.3 ADMINISTRADOR
+
+O ADMINISTRADOR possui as funcionalidades comuns do usuário e também pode:
+
+- acessar `/admin`, que é exclusivo de ADMINISTRADORES;
+- moderar, inclusive o próprio conteúdo;
+- revisar decisões de Moderação;
+- reverter rejeições;
+- retirar conteúdo previamente aprovado/publicado;
+- nomear MODERADORES e remover o papel de MODERADOR;
+- gerenciar papéis e permissões;
+- consultar as informações administrativas necessárias;
+- identificar o autor real de conteúdo anônimo **somente nas áreas administrativas autorizadas**.
+
+Nas áreas públicas, o ADMINISTRADOR vê a autoria de conteúdo anônimo como “Comunidade”, igual aos demais usuários. Isso não significa acesso irrestrito a todos os dados.
+
+A UX completa do painel administrativo e o fluxo detalhado das ações de MODERADOR e ADMINISTRADOR (revisão, reversão, retirada, auditoria) serão definidos em rodada específica.
 
 ---
 

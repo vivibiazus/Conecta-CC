@@ -37,7 +37,7 @@ A expansão para outros cursos, câmpus ou instituições não faz parte do MVP 
 
 ## 3. Papéis de usuário
 
-O MVP possui dois papéis principais:
+O MVP possui três papéis. As regras completas estão em [`requisitos.md`](requisitos.md), seção 1.
 
 ### ALUNO
 
@@ -47,7 +47,7 @@ Pode:
 
 - criar conta;
 - realizar Login;
-- recuperar senha;
+- recuperar senha, se a recuperação for implementada no MVP;
 - acessar a Home;
 - editar o próprio Perfil;
 - selecionar disciplinas atuais;
@@ -60,17 +60,23 @@ Pode:
 - compartilhar publicações e links;
 - encontrar outros estudantes;
 - consultar Perfis públicos;
+- consultar e gerenciar os próprios conteúdos em Perfil → Meus conteúdos;
 - acessar Configurações;
 - alterar senha;
 - receber notificações.
 
-### ADMIN
+### MODERADOR
 
-Possui as funcionalidades disponíveis ao estudante e também pode acessar a área de:
+Possui as funcionalidades disponíveis ao estudante e também pode acessar a **Moderação** dentro da aplicação comum (fora do `/admin`), para analisar, aprovar e rejeitar Material, Publicação e Oportunidade.
 
-**Moderação**
+- É nomeado somente por ADMINISTRADOR.
+- Não acessa `/admin`, não altera papéis e não gerencia permissões.
+- Não modera o próprio conteúdo: esse conteúdo não aparece na fila dele.
+- Nunca vê a identidade real do autor de conteúdo anônimo.
 
-O ADMIN pode analisar conteúdos enviados pela comunidade antes que sejam disponibilizados aos demais usuários.
+### ADMINISTRADOR
+
+Possui as funcionalidades disponíveis ao estudante, pode moderar (inclusive o próprio conteúdo) e é o único com acesso ao painel administrativo em `/admin`, onde gerencia papéis e permissões e pode identificar o autor real de conteúdo anônimo quando necessário.
 
 ---
 
@@ -459,7 +465,7 @@ Essa decisão não bloqueia a definição da arquitetura geral.
 
 # 14. Moderação
 
-A Moderação é exclusiva para usuários ADMIN.
+A Moderação é realizada por MODERADOR e ADMINISTRADOR. ALUNO não acessa a Moderação.
 
 Os conteúdos moderados são:
 
@@ -477,7 +483,7 @@ Fluxo:
 
 Conteúdo enviado
 → PENDENTE
-→ ADMIN analisa
+→ MODERADOR ou ADMINISTRADOR analisa
 → APROVADO ou REJEITADO
 → autor recebe notificação.
 
@@ -497,13 +503,11 @@ Quando rejeitado:
 - autor recebe notificação;
 - motivo da rejeição é opcional.
 
-## Regra para ADMIN
+## Conflito de interesse
 
-Um ADMIN não pode aprovar ou rejeitar o próprio conteúdo.
+Um MODERADOR não pode aprovar ou rejeitar o próprio conteúdo, inclusive o anônimo. Esse conteúdo não aparece na fila dele e é analisado por outro MODERADOR ou por um ADMINISTRADOR.
 
-Seu envio permanece pendente para análise de outro administrador.
-
-Caso administradores também utilizem a plataforma como estudantes durante o piloto, será necessário possuir mais de um ADMIN.
+O ADMINISTRADOR pode moderar o próprio conteúdo.
 
 ---
 
@@ -522,13 +526,13 @@ Grupo inferior:
 - Configurações
 - Sair
 
-## ADMIN
+## MODERADOR e ADMINISTRADOR
 
-Possui os mesmos itens e adicionalmente:
+Possuem os mesmos itens e adicionalmente acesso à Moderação, dentro da aplicação comum.
 
-- Moderação
+O painel administrativo em `/admin` é exclusivo do ADMINISTRADOR.
 
-O item Moderação aparece apenas para ADMIN.
+A navegação exata de MODERADOR e ADMINISTRADOR será definida na rodada específica desses papéis.
 
 ---
 

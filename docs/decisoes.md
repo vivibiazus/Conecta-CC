@@ -143,6 +143,8 @@ O MVP possui dois papéis:
 
 ADMIN possui as funcionalidades comuns do usuário e adicionalmente acesso à Moderação.
 
+> **Atualização (12/10/2026):** substituída. O MVP passa a ter três papéis: ALUNO, MODERADOR e ADMINISTRADOR. Ver `requisitos.md`, seção 1.
+
 ---
 
 # 8. Perfil completo
@@ -632,7 +634,7 @@ E-mail
 
 A implementação de token e validade será decidida na arquitetura.
 
-> **Atualização (12/10/2026):** a recuperação de senha saiu do MVP inicial. Ver seção 51.
+> **Atualização (12/10/2026):** a recuperação de senha deixou de ser obrigatória na primeira entrega e só será implementada se houver tempo. Se for, valem as regras acima. Ver seção 52.9.
 
 ---
 
@@ -668,7 +670,7 @@ No MVP e no piloto serão aplicadas as validações necessárias de formato e do
 
 Essa decisão não altera o fluxo de recuperação de senha, que continuará utilizando envio de e-mail.
 
-> **Atualização (12/10/2026):** a recuperação de senha saiu do MVP inicial. Ver seção 51.
+> **Atualização (12/10/2026):** a recuperação de senha deixou de ser obrigatória na primeira entrega e só será implementada se houver tempo. Se for, valem as regras acima. Ver seção 52.9.
 ---
 
 # 33. Notificações
@@ -780,6 +782,8 @@ Quando informado:
 → pode ser exibido ao autor na notificação.
 
 Antes do piloto deverá existir orientação básica de redação para administradores.
+
+> **Atualização (12/10/2026):** substituída. O motivo é obrigatório na rejeição feita por MODERADOR. Ele não precisa aparecer na notificação, mas o autor o vê em Meus conteúdos → Detalhes do envio rejeitado. Ver seção 52.2.
 
 ---
 
@@ -1045,14 +1049,9 @@ Sem confirmação de e-mail no MVP, qualquer resposta diferente de “conta cria
 
 ## 51.5 Recuperação de senha fora do MVP inicial
 
-Todo o fluxo de recuperação de senha fica para depois do MVP inicial.
+> **Substituída pela seção 52.9:** a recuperação passou a ser opcional na primeira entrega, e não futura.
 
-- O link “Esqueci minha senha” sai do Login.
-- As telas de recuperação ficam no protótipo marcadas como FUTURO.
-- Quem esquecer a senha **não terá tratamento** no MVP inicial, porque será uma versão fechada para poucos alunos.
-- Alterar a senha em Configurações, com o usuário logado, continua no MVP.
-
-Ao voltar, a recuperação deverá decidir o comportamento para link inválido, expirado ou já utilizado.
+Registro original: todo o fluxo de recuperação ficaria para depois do MVP inicial, o link “Esqueci minha senha” sairia do Login e quem esquecesse a senha não teria tratamento, porque o MVP inicial será uma versão fechada para poucos alunos.
 
 ## 51.6 Visibilidade das disciplinas atuais
 
@@ -1061,3 +1060,76 @@ As disciplinas atuais ficam **visíveis para usuários autenticados**: no Perfil
 ## 51.7 Título da seção no Perfil
 
 A seção que contém as Disciplinas atuais continua com o título **Minha jornada acadêmica**.
+
+---
+
+# 52. Decisões após o prompt mestre — 12/10/2026
+
+Complementam a seção 51 e substituem regras antigas que entrem em conflito.
+
+## 52.1 Perfil → Meus conteúdos entra no MVP
+
+Área privada do próprio usuário para consultar e gerenciar os conteúdos e solicitações vinculados à sua conta, **inclusive os anônimos**. Não é um histórico administrativo completo.
+
+- Uma única lista, da mais recente para a mais antiga, sem abas por status.
+- Filtro por status: Todos, Em andamento, Aprovados, Rejeitados, Excluídos.
+- “Em andamento” é só um agrupamento visual (por exemplo, PENDENTE). **Não** cria um status persistido.
+- Cada item mostra: título, código da solicitação, tipo (Material/Publicação/Oportunidade), módulo (Estudos/Comunidade/Oportunidade), data do envio, status, indicação de anônimo quando aplicável e as ações permitidas.
+
+## 52.2 Motivo da rejeição visível ao autor
+
+Em Meus conteúdos → **Detalhes do envio rejeitado**, o autor vê o status REJEITADO e o motivo registrado pela Moderação. A notificação pode continuar mostrando só “Rejeitado”.
+
+No MVP não há contestação, reavaliação nem recurso.
+
+## 52.3 Ações do autor no card público
+
+Confirma a seção 51.1. O menu ⋯ com Editar e Excluir aparece só para o autor, no conteúdo identificado e no anônimo. Isso não quebra o anonimato perante terceiros:
+
+- outros ALUNOS e o MODERADOR não descobrem o autor;
+- nas áreas públicas, o ADMINISTRADOR também vê “Comunidade”;
+- só as áreas administrativas autorizadas revelam a autoria real ao ADMINISTRADOR.
+
+Fica substituída a regra de que a interface pública não poderia mostrar nenhum indício de propriedade nem ao próprio autor.
+
+## 52.4 Edição de conteúdo aprovado
+
+Mantida: a versão aprovada continua pública enquanto a edição está pendente e só é substituída após aprovação. Se a edição for rejeitada, a versão anterior permanece. A edição preserva a condição de autoria (identificado ou anônimo).
+
+## 52.5 Solicitação em andamento
+
+Não pode ser modificada diretamente. O usuário pode **pedir o cancelamento**. Depois do cancelamento efetivo, qualquer novo envio ou edição gera uma nova solicitação.
+
+**Em aberto:** se o cancelamento é imediato ou processado por alguém, como a solicitação cancelada é representada, se existe status CANCELADA e em qual filtro ela aparece.
+
+## 52.6 Conteúdo excluído
+
+Continua listado em Meus conteúdos, identificado como **Excluído**, e pode ser consultado. A exclusão pública segue com soft delete. Não há restauração pelo usuário no MVP.
+
+## 52.7 Ações por situação em Meus conteúdos
+
+| Situação | Ações no MVP |
+|---|---|
+| Aprovado | Ver conteúdo, Editar, Excluir |
+| Em andamento / Pendente | Ver dados enviados, solicitar cancelamento (sem editar) |
+| Rejeitado | Ver dados enviados, ver detalhes e motivo da rejeição |
+| Excluído | Consultar; sem restauração |
+
+## 52.8 Disciplinas atuais
+
+Confirma a seção 51.6: visíveis para usuários autenticados, sem opção de ocultar no MVP. Os Termos devem informar isso antes do piloto. Uma opção futura de ocultar exige antes definir as consequências para busca e descoberta.
+
+## 52.9 Recuperação de senha opcional na primeira entrega
+
+Cadastro, Login, autenticação e sessão continuam obrigatórios. O fluxo Esqueci minha senha → e-mail → link → redefinir senha **só será implementado se houver tempo**. Se não for, fica para a próxima evolução. Se for implementado, valem as regras já definidas. Alterar a senha em Configurações continua no MVP.
+
+## 52.10 Ações futuras em cards — não implementar
+
+Salvar, Compartilhar, Copiar link, Denunciar, notificações por disciplina, módulo ou tipo, Ocultar, “Ver menos conteúdos como este”, Tenho interesse / Não tenho interesse. Nenhuma pertence ao MVP, e as regras delas não estão definidas.
+
+## 52.11 Pendências que continuam
+
+- Cancelamento: fluxo, se é imediato, quem processa, representação e filtro.
+- Rejeitado: se poderá ser editado e reenviado direto de Meus conteúdos ou se exige um novo envio.
+- Filtro por tipo em Meus conteúdos: avaliar se for simples. Busca textual fica para o futuro.
+- Continuam futuros: histórico de versões, linha do tempo, comparação antes/depois, auditoria completa, mostrar ao usuário comum quem moderou, portfólio, métricas, reavaliação e restauração pelo usuário.
