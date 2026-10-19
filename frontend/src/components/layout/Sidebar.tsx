@@ -4,6 +4,7 @@ import { Brand } from '@/components/Brand';
 import { useLogout, type User } from '@/features/auth/hooks';
 import { canModerate } from '@/features/auth/roles';
 import { cn } from '@/lib/utils';
+import { useLeaveGuard } from './leaveGuard';
 
 type Item = { to: string; label: string; icon: LucideIcon };
 
@@ -33,8 +34,10 @@ function NavItem({ item, onNavigate }: { item: Item; onNavigate?: () => void }) 
 export function Sidebar({ user, onClose }: { user?: User; onClose?: () => void }) {
   const logout = useLogout();
   const navigate = useNavigate();
+  const { confirmLeave } = useLeaveGuard();
 
   const signOut = async () => {
+    if (!(await confirmLeave())) return; // alterações não salvas: perguntar antes de encerrar a sessão
     await logout.mutateAsync().catch(() => undefined); // mesmo sem resposta, a sessão local é descartada
     navigate('/login', { replace: true });
   };
