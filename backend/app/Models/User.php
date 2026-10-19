@@ -8,15 +8,22 @@ use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 /**
  * @property Role $role
+ * @property string|null $about
+ * @property list<string> $interests
+ * @property list<string> $can_help_with
+ * @property list<string> $needs_help_with
+ * @property string|null $github_url
+ * @property string|null $linkedin_url
  */
 // role fica fora do Fillable: papel só muda por código explícito
-#[Fillable(['name', 'display_name', 'email', 'password'])]
+#[Fillable(['name', 'display_name', 'email', 'password', 'about', 'interests', 'can_help_with', 'needs_help_with', 'github_url', 'linkedin_url'])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
 {
@@ -34,6 +41,9 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
             'role' => Role::class,
+            'interests' => 'array',
+            'can_help_with' => 'array',
+            'needs_help_with' => 'array',
         ];
     }
 
@@ -41,6 +51,18 @@ class User extends Authenticatable
     public function termsAcceptances(): HasMany
     {
         return $this->hasMany(TermsAcceptance::class);
+    }
+
+    /** @return BelongsToMany<Discipline, $this> */
+    public function disciplines(): BelongsToMany
+    {
+        return $this->belongsToMany(Discipline::class)->orderBy('semester')->orderBy('name');
+    }
+
+    // decisoes.md §8: Nome de exibição + pelo menos uma disciplina atual
+    public function isProfileComplete(): bool
+    {
+        return trim((string) $this->display_name) !== '' && $this->disciplines()->exists();
     }
 
     public function initials(): string

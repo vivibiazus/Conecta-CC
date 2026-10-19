@@ -20,6 +20,22 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/disciplines": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["v1.listDisciplines"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/login": {
         parameters: {
             query?: never;
@@ -84,15 +100,50 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/profile": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["v1.showProfile"];
+        put: operations["v1.updateProfile"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        /** DisciplineResource */
+        DisciplineResource: {
+            id: number;
+            name: string;
+            semester: number;
+        };
         /** LoginRequest */
         LoginRequest: {
             /** Format: email */
             email: string;
             password: string;
+        };
+        /** ProfileResource */
+        ProfileResource: {
+            display_name: string;
+            initials: string;
+            about: string | null;
+            interests: string[];
+            can_help_with: string[];
+            needs_help_with: string[];
+            github_url: string | null;
+            linkedin_url: string | null;
+            disciplines: components["schemas"]["DisciplineResource"][];
+            complete: boolean;
         };
         /** RegisterRequest */
         RegisterRequest: {
@@ -109,6 +160,17 @@ export interface components {
          * @enum {string}
          */
         Role: "ALUNO" | "MODERADOR" | "ADMINISTRADOR";
+        /** UpdateProfileRequest */
+        UpdateProfileRequest: {
+            display_name: string;
+            discipline_ids: number[];
+            about?: string | null;
+            github_url?: string | null;
+            linkedin_url?: string | null;
+            interests: string[];
+            can_help_with: string[];
+            needs_help_with: string[];
+        };
         /** UserResource */
         UserResource: {
             id: number;
@@ -116,6 +178,7 @@ export interface components {
             display_name: string;
             initials: string;
             role: components["schemas"]["Role"];
+            profile_complete: boolean;
         };
     };
     responses: {
@@ -172,6 +235,27 @@ export interface operations {
                     "application/json": unknown;
                 };
             };
+        };
+    };
+    "v1.listDisciplines": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Array of `DisciplineResource` */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DisciplineResource"][];
+                };
+            };
+            401: components["responses"]["AuthenticationException"];
         };
     };
     "v1.login": {
@@ -263,6 +347,53 @@ export interface operations {
                     };
                 };
             };
+            422: components["responses"]["ValidationException"];
+        };
+    };
+    "v1.showProfile": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description `ProfileResource` */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProfileResource"];
+                };
+            };
+            401: components["responses"]["AuthenticationException"];
+        };
+    };
+    "v1.updateProfile": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateProfileRequest"];
+            };
+        };
+        responses: {
+            /** @description `ProfileResource` */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProfileResource"];
+                };
+            };
+            401: components["responses"]["AuthenticationException"];
             422: components["responses"]["ValidationException"];
         };
     };

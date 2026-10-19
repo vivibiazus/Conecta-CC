@@ -18,6 +18,7 @@ final class UserResource extends JsonResource
             'display_name' => $this->display_name,
             'initials' => $this->initials(),
             'role' => $this->role,
+            'profile_complete' => $this->isProfileComplete(),
         ];
     }
 }

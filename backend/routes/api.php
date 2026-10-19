@@ -6,6 +6,8 @@ use App\Http\Controllers\Api\V1\LoginController;
 use App\Http\Controllers\Api\V1\LogoutController;
 use App\Http\Controllers\Api\V1\MeController;
 use App\Http\Controllers\Api\V1\RegisterController;
+use App\Http\Controllers\Api\V1\ShowProfileController;
+use App\Http\Controllers\Api\V1\UpdateProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('v1')->group(function () {
@@ -16,6 +18,8 @@ Route::prefix('v1')->group(function () {
     Route::middleware('auth:sanctum')->group(function () {
         Route::get('me', MeController::class);
         Route::get('disciplines', ListDisciplinesController::class);
+        Route::get('profile', ShowProfileController::class);
+        Route::put('profile', UpdateProfileController::class);
         Route::post('logout', LogoutController::class);
     });
 });
