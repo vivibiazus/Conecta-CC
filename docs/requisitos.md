@@ -401,6 +401,8 @@ Ela será utilizada como referência inicial para:
 
 A necessidade de contemplar estudantes vinculados à Matriz 2017 será verificada posteriormente e não bloqueia as atividades atuais.
 
+> **Atualização (19/10/2026):** o catálogo foi carregado com as 49 disciplinas obrigatórias da Matriz 2023 (nome, semestre, carga horária e link oficial da ementa). As eletivas ficam fora por enquanto. Ver `decisoes.md` 53.
+
 ## RF-32 — Busca de disciplina
 
 O usuário deve conseguir pesquisar disciplinas pelo nome.

@@ -177,14 +177,14 @@ Possui os mesmos itens e adicionalmente:
 
 Implementar:
 
-- [ ] saudação;
-- [ ] apresentação do ConectaCC;
-- [ ] atalhos principais;
-- [ ] consulta do estado do Perfil;
-- [ ] card "Complete seu perfil";
-- [ ] desaparecimento do card quando o Perfil estiver completo;
+- [x] saudação;
+- [x] apresentação do ConectaCC;
+- [x] atalhos principais;
+- [x] consulta do estado do Perfil;
+- [x] card "Complete seu perfil";
+- [x] desaparecimento do card quando o Perfil estiver completo;
 - [ ] integração com notificações;
-- [ ] loading e erro parcial.
+- [x] loading e erro parcial.
 
 ---
 
@@ -192,28 +192,30 @@ Implementar:
 
 Implementar:
 
-- [ ] visualização do Perfil;
-- [ ] edição;
-- [ ] Nome de exibição;
-- [ ] curso;
-- [ ] semestre;
-- [ ] disciplinas atuais;
-- [ ] Sobre mim;
-- [ ] Interesses;
-- [ ] Posso ajudar com;
-- [ ] Procuro ajuda com;
-- [ ] GitHub;
-- [ ] LinkedIn;
-- [ ] avatar por iniciais;
-- [ ] validações;
-- [ ] confirmação de alterações não salvas.
+- [x] visualização do Perfil;
+- [x] edição;
+- [x] Nome de exibição;
+- [x] curso;
+- [ ] semestre (fora desta entrega — decisoes.md 53.3);
+- [x] disciplinas atuais;
+- [x] Sobre mim;
+- [x] Interesses;
+- [x] Posso ajudar com;
+- [x] Procuro ajuda com;
+- [x] GitHub;
+- [x] LinkedIn;
+- [x] avatar por iniciais;
+- [x] validações;
+- [x] confirmação de alterações não salvas.
 
 O Perfil é considerado completo quando possui:
 
 - Nome de exibição;
 - pelo menos uma disciplina atual.
 
-Também deverá ser implementada a visibilidade adequada das informações para outros estudantes autenticados.
+Também deverá ser implementada a visibilidade adequada das informações para outros estudantes autenticados (fica para o Perfil público).
+
+Implementado em 19/10/2026 (spec `specs/2026-10-19-perfil-design.md`). Catálogo com as 49 disciplinas obrigatórias da Matriz 2023 (decisoes.md 53.2).
 
 ---
 
