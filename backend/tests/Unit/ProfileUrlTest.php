@@ -43,6 +43,13 @@ it('normaliza perfis do LinkedIn', function (string $input) {
     'HTTPS://WWW.LinkedIn.com/in/ana_silva-1',
 ]);
 
+it('aceita nomes acentuados do LinkedIn, codificados ou não', function (string $input, string $expected) {
+    expect(ProfileUrl::linkedin($input))->toBe($expected);
+})->with([
+    'codificado' => ['https://www.linkedin.com/in/jo%C3%A3o-silva-1a2b3c', 'https://www.linkedin.com/in/jo%C3%A3o-silva-1a2b3c'],
+    'sem codificar' => ['linkedin.com/in/joão-silva', 'https://www.linkedin.com/in/joão-silva'],
+]);
+
 it('recusa o que não é perfil do LinkedIn', function (string $input) {
     expect(ProfileUrl::linkedin($input))->toBeNull();
 })->with([
@@ -55,4 +62,5 @@ it('recusa o que não é perfil do LinkedIn', function (string $input) {
     'https://abc.linkedin.com/in/ana',
     'https://www.linkedin.com:444/in/ana',
     'ftp://linkedin.com/in/ana',
+    'https://www.linkedin.com/in/ana%2Fx%',
 ]);

@@ -89,11 +89,14 @@ export function ProfileForm({ profile, disciplines, focusDisciplines, onSaved, o
     [],
   );
 
-  // /login fica livre: o Sair já confirmou antes do logout e a sessão expirada não pergunta
-  const blocker = useBlocker(
-    ({ currentLocation, nextLocation }) =>
-      isDirty && !update.isSuccess && nextLocation.pathname !== currentLocation.pathname && nextLocation.pathname !== '/login',
-  );
+  // pergunta em qualquer saída do modo de edição (outra página, voltar do navegador, "Perfil" na sidebar).
+  // Ficam livres: /login (o Sair já confirmou antes do logout e a sessão expirada não pergunta)
+  // e a saída já decidida ao salvar ou confirmar o Cancelar (leaveEditing no state da navegação).
+  const blocker = useBlocker(({ currentLocation, nextLocation }) => {
+    const staysEditing = nextLocation.pathname === currentLocation.pathname && new URLSearchParams(nextLocation.search).has('editar');
+    const decided = (nextLocation.state as { leaveEditing?: boolean } | null)?.leaveEditing === true;
+    return isDirty && !decided && !staysEditing && nextLocation.pathname !== '/login';
+  });
 
   useEffect(() => {
     if (blocker.state !== 'blocked') return;
@@ -140,7 +143,8 @@ export function ProfileForm({ profile, disciplines, focusDisciplines, onSaved, o
   };
 
   const cancel = async () => {
-    if (!isDirty || (await askDiscard())) onCancel();
+    if (isDirty && !(await askDiscard())) return;
+    onCancel();
   };
 
   const disciplinesHintId = `${id}-disciplines-hint`;

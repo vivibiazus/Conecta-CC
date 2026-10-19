@@ -1,6 +1,7 @@
 import { CircleAlert, Search } from 'lucide-react';
 import { useEffect, useId, useRef, useState, type KeyboardEvent, type Ref } from 'react';
 import { Chip } from '@/components/Chip';
+import { assignRef } from '@/lib/assignRef';
 import { cn } from '@/lib/utils';
 
 type Option = { id: number; name: string };
@@ -24,6 +25,7 @@ export function DisciplinePicker({ id, options, value, onChange, error, describe
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(0);
   const listRef = useRef<HTMLUListElement>(null);
+  const input = useRef<HTMLInputElement | null>(null);
 
   const selected = value.map((selectedId) => options.find((option) => option.id === selectedId)).filter((option) => option !== undefined);
   const results = options.filter((option) => !value.includes(option.id) && normalize(option.name).includes(normalize(query.trim())));
@@ -60,7 +62,10 @@ export function DisciplinePicker({ id, options, value, onChange, error, describe
       <div className="relative">
         <Search className="pointer-events-none absolute top-1/2 left-4 size-5 -translate-y-1/2 text-muted-foreground" aria-hidden />
         <input
-          ref={inputRef}
+          ref={(element) => {
+            input.current = element;
+            assignRef(inputRef, element);
+          }}
           id={id}
           role="combobox"
           aria-expanded={open}
@@ -122,7 +127,14 @@ export function DisciplinePicker({ id, options, value, onChange, error, describe
           <p className="text-sm text-muted-foreground">Selecionadas ({selected.length})</p>
           <div className="flex flex-wrap gap-2">
             {selected.map((option) => (
-              <Chip key={option.id} onRemove={() => onChange(value.filter((item) => item !== option.id))} removeLabel={`Remover ${option.name}`}>
+              <Chip
+                key={option.id}
+                onRemove={() => {
+                  onChange(value.filter((item) => item !== option.id));
+                  input.current?.focus(); // o botão some; o foco volta à busca
+                }}
+                removeLabel={`Remover ${option.name}`}
+              >
                 {option.name}
               </Chip>
             ))}

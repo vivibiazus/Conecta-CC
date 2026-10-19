@@ -1,5 +1,6 @@
 import { CircleAlert } from 'lucide-react';
-import { useId, useState, type KeyboardEvent, type Ref } from 'react';
+import { useId, useRef, useState, type KeyboardEvent, type Ref } from 'react';
+import { assignRef } from '@/lib/assignRef';
 import { Chip } from '@/components/Chip';
 import { cn } from '@/lib/utils';
 
@@ -16,6 +17,7 @@ type Props = {
 export function TagInput({ label, hint, placeholder, value, onChange, error, inputRef }: Props) {
   const id = useId();
   const [text, setText] = useState('');
+  const input = useRef<HTMLInputElement | null>(null);
   const describedBy = [`${id}-hint`, error ? `${id}-error` : ''].filter(Boolean).join(' ');
 
   const add = () => {
@@ -48,16 +50,27 @@ export function TagInput({ label, hint, placeholder, value, onChange, error, inp
         )}
       >
         {value.map((tag) => (
-          <Chip key={tag} onRemove={() => onChange(value.filter((item) => item !== tag))} removeLabel={`Remover ${tag}`}>
+          <Chip
+            key={tag}
+            onRemove={() => {
+              onChange(value.filter((item) => item !== tag));
+              input.current?.focus(); // o botão some; o foco volta ao campo
+            }}
+            removeLabel={`Remover ${tag}`}
+          >
             {tag}
           </Chip>
         ))}
         <input
-          ref={inputRef}
+          ref={(element) => {
+            input.current = element;
+            assignRef(inputRef, element);
+          }}
           id={id}
           value={text}
           onChange={(event) => setText(event.target.value)}
           onKeyDown={onKeyDown}
+          onBlur={add} // texto digitado sem Enter não se perde ao salvar ou sair do campo
           placeholder={placeholder}
           aria-invalid={error ? true : undefined}
           aria-describedby={describedBy}

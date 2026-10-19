@@ -53,7 +53,7 @@ export function ProfileView({ profile }: { profile: Profile }) {
             <p className="mt-0.5 text-muted-foreground">Selecione pelo menos uma disciplina atual para completar seu perfil.</p>
           </div>
           <Button asChild variant="outline" className="h-11 self-start border-action px-5 text-[15px] font-semibold text-action sm:self-center">
-            <Link to="/perfil?editar=disciplinas">Selecionar disciplinas</Link>
+            <Link to="/perfil?editar=disciplinas" replace>Selecionar disciplinas</Link>
           </Button>
         </section>
       )}

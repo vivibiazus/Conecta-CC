@@ -19,7 +19,8 @@ final class ProfileUrl
     public static function linkedin(string $input): ?string
     {
         $parts = self::parse($input, '/^(www\.|[a-z]{2}\.)?linkedin\.com$/');
-        if ($parts === null || ! preg_match('#^/in/([A-Za-z0-9_-]{3,100})$#', $parts, $match)) {
+        // nomes acentuados aparecem codificados (jo%C3%A3o) ou crus (joão), conforme de onde o link foi copiado
+        if ($parts === null || ! preg_match('#^/in/((?:[\p{L}\p{N}_-]|%[0-9A-Fa-f]{2}){3,100})$#u', $parts, $match)) {
             return null;
         }
 

@@ -30,7 +30,7 @@ export function ProfilePage() {
         ) : (
           ready && (
             <Button asChild className="h-12 self-start px-5 text-base font-semibold">
-              <Link to="/perfil?editar" onClick={() => setSaved(false)}>
+              <Link to="/perfil?editar" replace onClick={() => setSaved(false)}>
                 <PencilLine className="size-5" aria-hidden />
                 Editar perfil
               </Link>
@@ -83,9 +83,9 @@ export function ProfilePage() {
               focusDisciplines={params.get('editar') === 'disciplinas'}
               onSaved={() => {
                 setSaved(true);
-                setParams({});
+                setParams({}, { replace: true, state: { leaveEditing: true } });
               }}
-              onCancel={() => setParams({})}
+              onCancel={() => setParams({}, { replace: true, state: { leaveEditing: true } })}
             />
           ) : (
             <ProfileView profile={profile.data} />
