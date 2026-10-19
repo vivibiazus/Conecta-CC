@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\V1\CurrentTermsController;
+use App\Http\Controllers\Api\V1\ListDisciplinesController;
 use App\Http\Controllers\Api\V1\LoginController;
 use App\Http\Controllers\Api\V1\LogoutController;
 use App\Http\Controllers\Api\V1\MeController;
@@ -14,6 +15,7 @@ Route::prefix('v1')->group(function () {
 
     Route::middleware('auth:sanctum')->group(function () {
         Route::get('me', MeController::class);
+        Route::get('disciplines', ListDisciplinesController::class);
         Route::post('logout', LogoutController::class);
     });
 });
