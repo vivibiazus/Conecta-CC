@@ -5,7 +5,7 @@ import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/utils';
 
 type Props = InputHTMLAttributes<HTMLInputElement> & {
-  label: string;
+  label: ReactNode;
   error?: ReactNode;
   hint?: string;
   ref?: Ref<HTMLInputElement>;

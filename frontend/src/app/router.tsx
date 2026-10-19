@@ -4,13 +4,13 @@ import { GuestOnly, RequireAuth, RequireModeration, RootRedirect } from '@/featu
 import { LoginPage } from '@/features/auth/LoginPage';
 import { RegisterPage } from '@/features/auth/RegisterPage';
 import { HomePage } from '@/features/home/HomePage';
+import { ProfilePage } from '@/features/profile/ProfilePage';
 import { UnderConstructionPage } from '@/pages/UnderConstructionPage';
 
 const placeholders = [
   ['/estudos', 'Estudos'],
   ['/oportunidade', 'Oportunidade'],
   ['/comunidade', 'Comunidade'],
-  ['/perfil', 'Perfil'],
   ['/configuracoes', 'Configurações'],
 ] as const;
 
@@ -29,6 +29,7 @@ export const router = createBrowserRouter([
         element: <AppLayout />,
         children: [
           { path: '/home', element: <HomePage /> },
+          { path: '/perfil', element: <ProfilePage /> },
           ...placeholders.map(([path, title]) => ({ path, element: <UnderConstructionPage title={title} /> })),
           {
             element: <RequireModeration />,
