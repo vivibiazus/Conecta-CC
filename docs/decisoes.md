@@ -1158,5 +1158,6 @@ O princípio vale para integrações futuras (Moodle, SUAP, páginas institucion
 - O campo **Semestre** não entra ainda.
 - As **sugestões** de tags ("Sugestões: + Git…") ficam para o futuro.
 - Para salvar o Perfil são obrigatórios o Nome de exibição e pelo menos uma disciplina atual, como no protótipo.
+- Os cards do Perfil ocupam toda a largura da área de conteúdo, e não só uma coluna à esquerda como no protótipo.
 - GitHub e LinkedIn aceitam **só o endereço do perfil da pessoa**. Query string e fragmento são descartados, e o LinkedIn aceita subdomínio de país (`br.linkedin.com`). Os links são salvos como `https://github.com/usuario` e `https://www.linkedin.com/in/usuario`.
 - Os limites de texto definitivos continuam pendentes (`pendencias.md` 2.7). Até lá vale um teto técnico provisório (Nome de exibição 120, Sobre mim 5.000, 255 por tag, 50 tags por campo), sem contador na tela.

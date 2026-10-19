@@ -19,7 +19,7 @@ export function ProfilePage() {
   const ready = profile.data && disciplines.data;
 
   return (
-    <div className="max-w-[900px]">
+    <div>
       <header className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
         <div>
           <h1 className="font-display text-4xl font-bold text-foreground">Perfil</h1>
