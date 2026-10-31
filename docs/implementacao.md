@@ -225,13 +225,13 @@ Estudos é implementado em duas etapas (decidido em 31/10/2026). O envio de mate
 
 ## Etapa 1 — Estudos (leitura)
 
-- [ ] Minhas disciplinas.
-- [ ] Todas as disciplinas.
-- [ ] busca de disciplinas.
-- [ ] identificação de "Minha disciplina".
-- [ ] página da disciplina.
-- [ ] acesso à ementa oficial quando houver URL confirmada.
-- [ ] estado sem materiais.
+- [x] Minhas disciplinas.
+- [x] Todas as disciplinas.
+- [x] busca de disciplinas.
+- [x] identificação de "Minha disciplina".
+- [x] página da disciplina.
+- [x] acesso à ementa oficial quando houver URL confirmada.
+- [x] estado sem materiais.
 
 Todas as disciplinas têm área de materiais (decisão de 31/10/2026), então o estado "disciplina ainda sem área de materiais" (RF-34) não entra agora.
 
