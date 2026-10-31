@@ -5,6 +5,7 @@ import { FormAlert } from '@/components/FormAlert';
 import { Sheet, SheetContent, SheetDescription, SheetTitle } from '@/components/ui/sheet';
 import { useMe } from '@/features/auth/hooks';
 import { Header } from './Header';
+import { LeaveGuardProvider } from './LeaveGuardProvider';
 import { Sidebar } from './Sidebar';
 
 export function AppLayout() {
@@ -17,38 +18,40 @@ export function AppLayout() {
   }, [user]);
 
   return (
-    <div className="min-h-dvh bg-ice lg:pl-[275px]">
-      <aside className="fixed inset-y-0 left-0 hidden w-[275px] lg:block">
-        <Sidebar user={user} />
-      </aside>
+    <LeaveGuardProvider>
+      <div className="min-h-dvh bg-ice lg:pl-[275px]">
+        <aside className="fixed inset-y-0 left-0 hidden w-[275px] lg:block">
+          <Sidebar user={user} />
+        </aside>
 
-      <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
-        <SheetContent side="left" showCloseButton={false} className="w-[300px] max-w-[85vw] border-none bg-navy-900 p-0">
-          <SheetTitle className="sr-only">Menu</SheetTitle>
-          <SheetDescription className="sr-only">Navegação principal do ConectaCC</SheetDescription>
-          <Sidebar user={user} onClose={() => setMenuOpen(false)} />
-        </SheetContent>
-      </Sheet>
+        <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
+          <SheetContent side="left" showCloseButton={false} className="w-[300px] max-w-[85vw] border-none bg-navy-900 p-0">
+            <SheetTitle className="sr-only">Menu</SheetTitle>
+            <SheetDescription className="sr-only">Navegação principal do ConectaCC</SheetDescription>
+            <Sidebar user={user} onClose={() => setMenuOpen(false)} />
+          </SheetContent>
+        </Sheet>
 
-      <Header user={user} loading={me.isPending} onOpenMenu={() => setMenuOpen(true)} />
+        <Header user={user} loading={me.isPending} onOpenMenu={() => setMenuOpen(true)} />
 
-      <main className="px-4 py-8 sm:px-8 lg:px-11 lg:py-12">
-        {me.isError && (
-          <div className="mb-8">
-            <FormAlert
-              variant="warning"
-              action={
-                <button type="button" onClick={() => me.refetch()} className="font-semibold underline underline-offset-2">
-                  Tentar novamente
-                </button>
-              }
-            >
-              Não foi possível carregar algumas informações agora. Tente novamente.
-            </FormAlert>
-          </div>
-        )}
-        <Outlet />
-      </main>
-    </div>
+        <main className="px-4 py-8 sm:px-8 lg:px-11 lg:py-12">
+          {me.isError && (
+            <div className="mb-8">
+              <FormAlert
+                variant="warning"
+                action={
+                  <button type="button" onClick={() => me.refetch()} className="font-semibold underline underline-offset-2">
+                    Tentar novamente
+                  </button>
+                }
+              >
+                Não foi possível carregar algumas informações agora. Tente novamente.
+              </FormAlert>
+            </div>
+          )}
+          <Outlet />
+        </main>
+      </div>
+    </LeaveGuardProvider>
   );
 }

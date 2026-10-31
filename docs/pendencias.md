@@ -106,6 +106,8 @@ A necessidade de contemplar estudantes ainda vinculados à Matriz 2017 será ver
 
 Essa verificação não bloqueia a arquitetura nem as atividades atuais.
 
+> **Atualização (19/10/2026):** o catálogo já está carregado com as 49 disciplinas obrigatórias da Matriz 2023 (`decisoes.md` 53.2). Continuam em aberto: quais disciplinas terão área de materiais, quais participarão do piloto, as eletivas e a Matriz 2017.
+
 ---
 
 ## 1.4 Anonimato público dos materiais
@@ -310,6 +312,8 @@ Os limites deverão considerar:
 - experiência do usuário;
 - apresentação dos cards.
 
+> **Teto provisório (19/10/2026):** até a definição, o servidor recusa Nome de exibição acima de 120 caracteres, Sobre mim acima de 5.000, tags acima de 255 caracteres e mais de 50 tags por campo. São só limites de segurança, sem contador na tela, e ficam em `UpdateProfileRequest` (constantes `MAX_*`).
+
 ---
 
 ## 2.8 Quantidade inicial antes de “Mostrar mais”
@@ -345,6 +349,8 @@ Na implementação, validar no servidor:
 - links LinkedIn correspondentes ao domínio LinkedIn.
 
 Não confiar somente na validação do frontend.
+
+> **Resolvida (19/10/2026) para GitHub e LinkedIn:** validação no servidor, só endereço de perfil, salvo como `https://` (`decisoes.md` 53.3). Os links de materiais e oportunidades seguirão a mesma regra de http/https quando forem implementados.
 
 ---
 

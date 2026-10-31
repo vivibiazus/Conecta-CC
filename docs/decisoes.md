@@ -1133,3 +1133,31 @@ Salvar, Compartilhar, Copiar link, Denunciar, notificações por disciplina, mó
 - Rejeitado: se poderá ser editado e reenviado direto de Meus conteúdos ou se exige um novo envio.
 - Filtro por tipo em Meus conteúdos: avaliar se for simples. Busca textual fica para o futuro.
 - Continuam futuros: histórico de versões, linha do tempo, comparação antes/depois, auditoria completa, mostrar ao usuário comum quem moderou, portfólio, métricas, reavaliação e restauração pelo usuário.
+
+---
+
+# 53. Perfil e catálogo de disciplinas — 19/10/2026
+
+Decisões tomadas na definição da segunda entrega (spec `specs/2026-10-19-perfil-design.md`).
+
+## 53.1 Referência, não cópia
+
+O ConectaCC guarda a **referência oficial** de cada disciplina (o link do PDF da ementa no site do IFSul), e não uma cópia do PDF nem do conteúdo institucional. O site do IFSul continua sendo a fonte canônica. Quando a página da disciplina existir, ela mostra "Ver ementa oficial ↗".
+
+O princípio vale para integrações futuras (Moodle, SUAP, páginas institucionais): o ConectaCC armazena referências, metadados e vínculos necessários para organizar e relacionar a informação, sem duplicar o que já existe em outro sistema.
+
+## 53.2 Catálogo
+
+- Entram as **49 disciplinas obrigatórias** da Matriz 2023, do 1º ao 8º semestre, com nome, semestre, carga horária e link da ementa.
+- Os nomes seguem o site do IFSul. Única correção: "Gestão Empresarial e Empreendedorismo" (o site traz "Empreededorismo").
+- As **eletivas** ficam fora por enquanto. A Matriz 2017 será verificada depois.
+- Todas as disciplinas do catálogo podem ser escolhidas no Perfil, mesmo que só algumas tenham área de materiais. As disciplinas piloto serão escolhidas depois e não bloqueiam o catálogo.
+
+## 53.3 Perfil nesta entrega
+
+- O campo **Semestre** não entra ainda.
+- As **sugestões** de tags ("Sugestões: + Git…") ficam para o futuro.
+- Para salvar o Perfil são obrigatórios o Nome de exibição e pelo menos uma disciplina atual, como no protótipo.
+- Os cards do Perfil ocupam toda a largura da área de conteúdo, e não só uma coluna à esquerda como no protótipo.
+- GitHub e LinkedIn aceitam **só o endereço do perfil da pessoa**. Query string e fragmento são descartados, e o LinkedIn aceita subdomínio de país (`br.linkedin.com`). Os links são salvos como `https://github.com/usuario` e `https://www.linkedin.com/in/usuario`.
+- Os limites de texto definitivos continuam pendentes (`pendencias.md` 2.7). Até lá vale um teto técnico provisório (Nome de exibição 120, Sobre mim 5.000, 255 por tag, 50 tags por campo), sem contador na tela.

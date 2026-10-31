@@ -29,6 +29,32 @@
                 }
             }
         },
+        "/disciplines": {
+            "get": {
+                "operationId": "v1.listDisciplines",
+                "tags": [
+                    "ListDisciplines"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Array of `DisciplineResource`",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/DisciplineResource"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/AuthenticationException"
+                    }
+                }
+            }
+        },
         "/login": {
             "post": {
                 "operationId": "v1.login",
@@ -142,10 +168,87 @@
                     }
                 }
             }
+        },
+        "/profile": {
+            "get": {
+                "operationId": "v1.showProfile",
+                "tags": [
+                    "ShowProfile"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "`ProfileResource`",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProfileResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/AuthenticationException"
+                    }
+                }
+            },
+            "put": {
+                "operationId": "v1.updateProfile",
+                "tags": [
+                    "UpdateProfile"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateProfileRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "`ProfileResource`",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProfileResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/AuthenticationException"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationException"
+                    }
+                }
+            }
         }
     },
     "components": {
         "schemas": {
+            "DisciplineResource": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "semester": {
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "id",
+                    "name",
+                    "semester"
+                ],
+                "title": "DisciplineResource"
+            },
             "LoginRequest": {
                 "type": "object",
                 "properties": {
@@ -162,6 +265,75 @@
                     "password"
                 ],
                 "title": "LoginRequest"
+            },
+            "ProfileResource": {
+                "type": "object",
+                "properties": {
+                    "display_name": {
+                        "type": "string"
+                    },
+                    "initials": {
+                        "type": "string"
+                    },
+                    "about": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "interests": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "can_help_with": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "needs_help_with": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "github_url": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "linkedin_url": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "disciplines": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/DisciplineResource"
+                        }
+                    },
+                    "complete": {
+                        "type": "boolean"
+                    }
+                },
+                "required": [
+                    "display_name",
+                    "initials",
+                    "about",
+                    "interests",
+                    "can_help_with",
+                    "needs_help_with",
+                    "github_url",
+                    "linkedin_url",
+                    "disciplines",
+                    "complete"
+                ],
+                "title": "ProfileResource"
             },
             "RegisterRequest": {
                 "type": "object",
@@ -204,6 +376,73 @@
                 ],
                 "title": "Role"
             },
+            "UpdateProfileRequest": {
+                "type": "object",
+                "properties": {
+                    "display_name": {
+                        "type": "string",
+                        "maxLength": 120
+                    },
+                    "discipline_ids": {
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        },
+                        "minItems": 1
+                    },
+                    "about": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "maxLength": 5000
+                    },
+                    "github_url": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "linkedin_url": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "interests": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "maxLength": 255
+                        },
+                        "maxItems": 50
+                    },
+                    "can_help_with": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "maxLength": 255
+                        },
+                        "maxItems": 50
+                    },
+                    "needs_help_with": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "maxLength": 255
+                        },
+                        "maxItems": 50
+                    }
+                },
+                "required": [
+                    "display_name",
+                    "discipline_ids",
+                    "interests",
+                    "can_help_with",
+                    "needs_help_with"
+                ],
+                "title": "UpdateProfileRequest"
+            },
             "UserResource": {
                 "type": "object",
                 "properties": {
@@ -221,6 +460,9 @@
                     },
                     "role": {
                         "$ref": "#/components/schemas/Role"
+                    },
+                    "profile_complete": {
+                        "type": "boolean"
                     }
                 },
                 "required": [
@@ -228,7 +470,8 @@
                     "name",
                     "display_name",
                     "initials",
-                    "role"
+                    "role",
+                    "profile_complete"
                 ],
                 "title": "UserResource"
             }

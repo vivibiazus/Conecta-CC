@@ -20,6 +20,7 @@ it('entra com credenciais corretas e devolve o usuário', function () {
             'display_name' => 'Ana Silva',
             'initials' => 'AS',
             'role' => 'ALUNO',
+            'profile_complete' => false,
         ]);
 
     $this->assertAuthenticatedAs($this->user, 'web');

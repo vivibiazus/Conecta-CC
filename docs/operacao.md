@@ -93,3 +93,13 @@ Actions → **Promover usuário** → Run workflow, informando e-mail e papel. O
 1. Criar `backend/resources/terms/<nova versão>.json` com o texto.
 2. Atualizar `TERMS_VERSION` no Render e no `render.yaml`.
 3. Quem estiver no meio de um cadastro verá "Os Termos de participação foram atualizados. Leia e aceite novamente.".
+
+## Atualizar o catálogo de disciplinas
+
+O catálogo vem de `backend/resources/catalog/matriz-2023.json` e é gravado no banco por uma migration de dados, que roda sozinha no deploy. Para mudar uma disciplina (nome, carga horária, link da ementa) ou incluir outra:
+
+1. Editar o JSON. O link da ementa aponta para o PDF oficial no site do IFSul: não copiar o PDF (`decisoes.md` 53.1).
+2. Criar uma migration que chame `DisciplineCatalog::sync(resource_path('catalog/matriz-2023.json'))`. A sincronização atualiza pelo nome e não duplica.
+3. Fazer merge na `main`: o deploy aplica a migration.
+
+Renomear uma disciplina cria uma nova pelo nome. A antiga continua no banco até ser removida por uma migration própria.

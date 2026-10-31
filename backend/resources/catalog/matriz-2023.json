@@ -1,0 +1,296 @@
+[
+  {
+    "name": "Algoritmos I",
+    "semester": 1,
+    "workload_hours": 75,
+    "syllabus_url": "https://inf.passofundo.ifsul.edu.br/assets/docs/bcc/ementas/primeiro_semestre/PF_CC_1_Algoritmos_I.pdf"
+  },
+  {
+    "name": "Introdução à História e Conceitos da Computação",
+    "semester": 1,
+    "workload_hours": 45,
+    "syllabus_url": "https://inf.passofundo.ifsul.edu.br/assets/docs/bcc/ementas/primeiro_semestre/PF_CC_2_Introducao_Historia_Conceitos_Computacao.pdf"
+  },
+  {
+    "name": "Matemática Discreta",
+    "semester": 1,
+    "workload_hours": 75,
+    "syllabus_url": "https://inf.passofundo.ifsul.edu.br/assets/docs/bcc/ementas/primeiro_semestre/PF_CC_3_Matematica_Discreta.pdf"
+  },
+  {
+    "name": "Circuitos Digitais",
+    "semester": 1,
+    "workload_hours": 75,
+    "syllabus_url": "https://inf.passofundo.ifsul.edu.br/assets/docs/bcc/ementas/primeiro_semestre/PF_CC_4_%20Circuitos_Digitais.pdf"
+  },
+  {
+    "name": "Criação de Páginas WEB",
+    "semester": 1,
+    "workload_hours": 60,
+    "syllabus_url": "https://inf.passofundo.ifsul.edu.br/assets/docs/bcc/ementas/primeiro_semestre/PF_CC_5_%20Criacao_Paginas_Web.pdf"
+  },
+  {
+    "name": "Leitura e Produção Textual Acadêmica",
+    "semester": 1,
+    "workload_hours": 45,
+    "syllabus_url": "https://inf.passofundo.ifsul.edu.br/assets/docs/bcc/ementas/primeiro_semestre/PF_CC_6_%20Leitura_e_Producao_Textual_Academica.pdf"
+  },
+  {
+    "name": "Algoritmos II",
+    "semester": 2,
+    "workload_hours": 75,
+    "syllabus_url": "https://inf.passofundo.ifsul.edu.br/assets/docs/bcc/ementas/segundo_semestre/PF_CC_7_Algoritmos_II.pdf"
+  },
+  {
+    "name": "Sociedade e Tecnologia",
+    "semester": 2,
+    "workload_hours": 30,
+    "syllabus_url": "https://inf.passofundo.ifsul.edu.br/assets/docs/bcc/ementas/segundo_semestre/PF_CC_8_Sociedade_Tecnologia.pdf"
+  },
+  {
+    "name": "Arquitetura de Computadores I",
+    "semester": 2,
+    "workload_hours": 75,
+    "syllabus_url": "https://inf.passofundo.ifsul.edu.br/assets/docs/bcc/ementas/segundo_semestre/PF_CC_9_Arquitetura_Computadores_I.pdf"
+  },
+  {
+    "name": "Cálculo Diferencial e Integral I",
+    "semester": 2,
+    "workload_hours": 75,
+    "syllabus_url": "https://inf.passofundo.ifsul.edu.br/assets/docs/bcc/ementas/segundo_semestre/PF_CC_10_Calculo_Diferencial_I.pdf"
+  },
+  {
+    "name": "Fundamentos de Eletricidade e Eletrônica",
+    "semester": 2,
+    "workload_hours": 75,
+    "syllabus_url": "https://inf.passofundo.ifsul.edu.br/assets/docs/bcc/ementas/segundo_semestre/PF_CC_11_Fundamentos_Eletricidade.pdf"
+  },
+  {
+    "name": "Comunicação em Língua Inglesa",
+    "semester": 2,
+    "workload_hours": 45,
+    "syllabus_url": "https://inf.passofundo.ifsul.edu.br/assets/docs/bcc/ementas/segundo_semestre/PF_CC_12_Comunicacao_Lingua_Inglesa.pdf"
+  },
+  {
+    "name": "Estrutura de Dados I",
+    "semester": 3,
+    "workload_hours": 75,
+    "syllabus_url": "https://inf.passofundo.ifsul.edu.br/assets/docs/bcc/ementas/terceiro_semestre/PF_CC_13_Estrutura_Dados_I.pdf"
+  },
+  {
+    "name": "Arquitetura de Computadores II",
+    "semester": 3,
+    "workload_hours": 45,
+    "syllabus_url": "https://inf.passofundo.ifsul.edu.br/assets/docs/bcc/ementas/terceiro_semestre/PF_CC_14_Arquitetura_Computadores_II.pdf"
+  },
+  {
+    "name": "Cálculo Diferencial e Integral II",
+    "semester": 3,
+    "workload_hours": 75,
+    "syllabus_url": "https://inf.passofundo.ifsul.edu.br/assets/docs/bcc/ementas/terceiro_semestre/PF_CC_15_Calculo_Diferencial_II.pdf"
+  },
+  {
+    "name": "Tecnologia de Orientação a Objetos",
+    "semester": 3,
+    "workload_hours": 45,
+    "syllabus_url": "https://inf.passofundo.ifsul.edu.br/assets/docs/bcc/ementas/terceiro_semestre/PF_CC_16_Tecnologia_de_Orientacao_a_objetos.pdf"
+  },
+  {
+    "name": "Banco de Dados I",
+    "semester": 3,
+    "workload_hours": 75,
+    "syllabus_url": "https://inf.passofundo.ifsul.edu.br/assets/docs/bcc/ementas/terceiro_semestre/PF_CC_17_Banco_Dados_I.pdf"
+  },
+  {
+    "name": "Leitura em Língua Inglesa",
+    "semester": 3,
+    "workload_hours": 30,
+    "syllabus_url": "https://inf.passofundo.ifsul.edu.br/assets/docs/bcc/ementas/terceiro_semestre/PF_CC_18_Leitura_Lingua_Inglesa.pdf"
+  },
+  {
+    "name": "Práticas Curriculares Sociedade I",
+    "semester": 3,
+    "workload_hours": 30,
+    "syllabus_url": "https://inf.passofundo.ifsul.edu.br/assets/docs/bcc/ementas/terceiro_semestre/PF_CC_19_Praticas_Curriculares_Sociedade_I.pdf"
+  },
+  {
+    "name": "Estrutura de Dados II",
+    "semester": 4,
+    "workload_hours": 45,
+    "syllabus_url": "https://inf.passofundo.ifsul.edu.br/assets/docs/bcc/ementas/quarto_semestre/PF_CC_20_Estrutura_Dados_II.pdf"
+  },
+  {
+    "name": "Linguagem de Programação Orientada a Objetos",
+    "semester": 4,
+    "workload_hours": 45,
+    "syllabus_url": "https://inf.passofundo.ifsul.edu.br/assets/docs/bcc/ementas/quarto_semestre/PF_CC_21_Linguagem_Programacao_Orientada_Objetos.pdf"
+  },
+  {
+    "name": "Redes de Computadores I",
+    "semester": 4,
+    "workload_hours": 45,
+    "syllabus_url": "https://inf.passofundo.ifsul.edu.br/assets/docs/bcc/ementas/quarto_semestre/PF_CC_22_Redes_Computadores_I.pdf"
+  },
+  {
+    "name": "Sistemas Operacionais I",
+    "semester": 4,
+    "workload_hours": 60,
+    "syllabus_url": "https://inf.passofundo.ifsul.edu.br/assets/docs/bcc/ementas/quarto_semestre/PF_CC_23_Sistemas_Operacionais_I.pdf"
+  },
+  {
+    "name": "Banco de Dados II",
+    "semester": 4,
+    "workload_hours": 45,
+    "syllabus_url": "https://inf.passofundo.ifsul.edu.br/assets/docs/bcc/ementas/quarto_semestre/PF_CC_24_Banco_Dados_II.pdf"
+  },
+  {
+    "name": "Análise e Projeto de Sistemas",
+    "semester": 4,
+    "workload_hours": 60,
+    "syllabus_url": "https://inf.passofundo.ifsul.edu.br/assets/docs/bcc/ementas/quarto_semestre/PF_CC_25_Analise_Projeto_Sistemas.pdf"
+  },
+  {
+    "name": "Práticas Curriculares Sociedade II",
+    "semester": 4,
+    "workload_hours": 75,
+    "syllabus_url": "https://inf.passofundo.ifsul.edu.br/assets/docs/bcc/ementas/quarto_semestre/PF_CC_26_Praticas_Curriculares_Sociedade_II.pdf"
+  },
+  {
+    "name": "Estrutura de Dados III",
+    "semester": 5,
+    "workload_hours": 45,
+    "syllabus_url": "https://inf.passofundo.ifsul.edu.br/assets/docs/bcc/ementas/quinto_semestre/PF_CC_27_Estrutura_Dados_III.pdf"
+  },
+  {
+    "name": "Programação para WEB",
+    "semester": 5,
+    "workload_hours": 75,
+    "syllabus_url": "https://inf.passofundo.ifsul.edu.br/assets/docs/bcc/ementas/quinto_semestre/PF_CC_28_Programacao_Web.pdf"
+  },
+  {
+    "name": "Redes de Computadores II",
+    "semester": 5,
+    "workload_hours": 45,
+    "syllabus_url": "https://inf.passofundo.ifsul.edu.br/assets/docs/bcc/ementas/quinto_semestre/PF_CC_29_Redes_Computadores_II.pdf"
+  },
+  {
+    "name": "Sistemas Operacionais II",
+    "semester": 5,
+    "workload_hours": 30,
+    "syllabus_url": "https://inf.passofundo.ifsul.edu.br/assets/docs/bcc/ementas/quinto_semestre/PF_CC_30_Sistemas_Operacionais_II.pdf"
+  },
+  {
+    "name": "Teoria da Computação",
+    "semester": 5,
+    "workload_hours": 45,
+    "syllabus_url": "https://inf.passofundo.ifsul.edu.br/assets/docs/bcc/ementas/quinto_semestre/PF_CC_31_Teoria_Computacao.pdf"
+  },
+  {
+    "name": "Álgebra Linear e Geometria Analítica",
+    "semester": 5,
+    "workload_hours": 60,
+    "syllabus_url": "https://inf.passofundo.ifsul.edu.br/assets/docs/bcc/ementas/quinto_semestre/PF_CC_32_Algebra_Linear_Geometria_Analitica.pdf"
+  },
+  {
+    "name": "Práticas Curriculares Sociedade III",
+    "semester": 5,
+    "workload_hours": 75,
+    "syllabus_url": "https://inf.passofundo.ifsul.edu.br/assets/docs/bcc/ementas/quinto_semestre/PF_CC_33_Praticas_Curriculares_Sociedade_III.pdf"
+  },
+  {
+    "name": "Inteligência Artificial",
+    "semester": 6,
+    "workload_hours": 75,
+    "syllabus_url": "https://inf.passofundo.ifsul.edu.br/assets/docs/bcc/ementas/sexto_semestre/PF_CC_35_Inteligencia_Artificial.pdf"
+  },
+  {
+    "name": "Sistemas Distribuídos I",
+    "semester": 6,
+    "workload_hours": 45,
+    "syllabus_url": "https://inf.passofundo.ifsul.edu.br/assets/docs/bcc/ementas/sexto_semestre/PF_CC_34_Sistemas_Distribuidos_I.pdf"
+  },
+  {
+    "name": "Segurança em Redes de Computadores",
+    "semester": 6,
+    "workload_hours": 45,
+    "syllabus_url": "https://inf.passofundo.ifsul.edu.br/assets/docs/bcc/ementas/sexto_semestre/PF_CC_39_Seguranca_Redes_Computadores.pdf"
+  },
+  {
+    "name": "Análise e Complexidade de Algoritmos",
+    "semester": 6,
+    "workload_hours": 30,
+    "syllabus_url": "https://inf.passofundo.ifsul.edu.br/assets/docs/bcc/ementas/sexto_semestre/PF_CC_36_Analise_Complexidade_Algoritmos.pdf"
+  },
+  {
+    "name": "Metodologia da Pesquisa",
+    "semester": 6,
+    "workload_hours": 30,
+    "syllabus_url": "https://inf.passofundo.ifsul.edu.br/assets/docs/bcc/ementas/sexto_semestre/PF_CC_37_Metodologia_Pesquisa.pdf"
+  },
+  {
+    "name": "Computação Gráfica",
+    "semester": 6,
+    "workload_hours": 75,
+    "syllabus_url": "https://inf.passofundo.ifsul.edu.br/assets/docs/bcc/ementas/sexto_semestre/PF_CC_38_Computacao_Grafica.pdf"
+  },
+  {
+    "name": "Práticas Curriculares Sociedade IV",
+    "semester": 6,
+    "workload_hours": 75,
+    "syllabus_url": "https://inf.passofundo.ifsul.edu.br/assets/docs/bcc/ementas/sexto_semestre/PF_CC_40_Praticas_Curriculares_Sociedade_IV.pdf"
+  },
+  {
+    "name": "Sistemas Distribuídos II",
+    "semester": 7,
+    "workload_hours": 45,
+    "syllabus_url": "https://inf.passofundo.ifsul.edu.br/assets/docs/bcc/ementas/setimo_semestre/PF_CC_41_Sistemas_Distribuidos_II.pdf"
+  },
+  {
+    "name": "Engenharia de Software",
+    "semester": 7,
+    "workload_hours": 75,
+    "syllabus_url": "https://inf.passofundo.ifsul.edu.br/assets/docs/bcc/ementas/setimo_semestre/PF_CC_43_Engenharia_Software.pdf"
+  },
+  {
+    "name": "Compiladores",
+    "semester": 7,
+    "workload_hours": 45,
+    "syllabus_url": "https://inf.passofundo.ifsul.edu.br/assets/docs/bcc/ementas/setimo_semestre/PF_CC_44_Compiladores.pdf"
+  },
+  {
+    "name": "Probabilidade e Estatística",
+    "semester": 7,
+    "workload_hours": 30,
+    "syllabus_url": "https://inf.passofundo.ifsul.edu.br/assets/docs/bcc/ementas/setimo_semestre/PF_CC_45_Probabilidade_e_estatistica.pdf"
+  },
+  {
+    "name": "Trabalho de Conclusão I",
+    "semester": 7,
+    "workload_hours": 75,
+    "syllabus_url": "https://inf.passofundo.ifsul.edu.br/assets/docs/bcc/ementas/setimo_semestre/PF_CC_46_Trabalho_Conclusao_I.pdf"
+  },
+  {
+    "name": "Serviços Web",
+    "semester": 7,
+    "workload_hours": 30,
+    "syllabus_url": "https://inf.passofundo.ifsul.edu.br/assets/docs/bcc/ementas/setimo_semestre/PF_CC_42_Servicos_Web.pdf"
+  },
+  {
+    "name": "Práticas Curriculares Sociedade V",
+    "semester": 7,
+    "workload_hours": 75,
+    "syllabus_url": "https://inf.passofundo.ifsul.edu.br/assets/docs/bcc/ementas/setimo_semestre/PF_CC_47_Praticas_Curriculares_Sociedade_V.pdf"
+  },
+  {
+    "name": "Gestão Empresarial e Empreendedorismo",
+    "semester": 8,
+    "workload_hours": 45,
+    "syllabus_url": "https://inf.passofundo.ifsul.edu.br/assets/docs/bcc/ementas/oitavo_semestre/PF_CC_48_Gestao_Empresarial_Empreendedorismo.pdf"
+  },
+  {
+    "name": "Trabalho de Conclusão II",
+    "semester": 8,
+    "workload_hours": 75,
+    "syllabus_url": "https://inf.passofundo.ifsul.edu.br/assets/docs/bcc/ementas/oitavo_semestre/PF_CC_49_Trabalho_Conclusao_II.pdf"
+  }
+]
