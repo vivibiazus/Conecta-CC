@@ -25,7 +25,7 @@ Estudos foi dividido em duas etapas (decisão de 31/10/2026, `implementacao.md` 
 
 1. **Estudos** (`/estudos`): Minhas disciplinas, Todas as disciplinas agrupadas por semestre e busca.
 2. **Página da disciplina** (`/estudos/<slug>`): nome, semestre, carga horária, link da ementa oficial e a seção Materiais compartilhados ainda vazia.
-3. **Slug** das disciplinas no backend.
+3. **Slug** das disciplinas no backend, calculado a partir do nome.
 
 ### Não entra
 
@@ -44,10 +44,10 @@ Estudos foi dividido em duas etapas (decisão de 31/10/2026, `implementacao.md` 
 
 ### 4.1 Slug
 
-- A migration nova adiciona `disciplines.slug` (`string(160)`, `unique`, `not null`). Ela adiciona a coluna como nula, preenche com `Str::slug($name)` e depois aplica `not null` e `unique`.
-- `DisciplineCatalog::sync` passa a calcular o `slug` de cada linha, para que um catálogo recarregado continue consistente. O JSON do catálogo não muda.
-- Os 49 nomes atuais geram 49 slugs distintos (verificado). Se um nome futuro colidir, a constraint `unique` faz a sincronização falhar de forma explícita. **(escolha do Claude)**
+- O slug é **calculado a partir do nome** (`Str::slug($name)`) por um accessor do model `Discipline`. Ele não fica guardado no banco. **(escolha do Claude, ajustada no plano)** Uma coluna nova quebraria o `migrate:fresh`: a migration de carga do catálogo (`2026_10_19_000003`) roda antes dela e chama `DisciplineCatalog::sync`. Calcular evita migration e dá o mesmo endereço.
+- Os 49 nomes atuais geram 49 slugs distintos (verificado), e um teste garante isso. Se um nome futuro colidir, o teste falha.
 - O slug é derivado do nome. Se o nome de uma disciplina mudar, o endereço muda junto. **(escolha do Claude)** Hoje os nomes vêm da Matriz oficial e não mudam.
+- Na etapa 2, se o backend precisar buscar disciplina por slug (`/disciplines/{slug}/materials`), avaliar ali se vale criar a coluna. Isso exige uma migration que não use `DisciplineCatalog::sync`.
 
 ### 4.2 API
 
@@ -108,8 +108,7 @@ Cabeçalho: "Estudos", com o subtítulo "Acesse suas disciplinas e materiais com
 ## 6. Testes
 
 - **Backend (Pest):**
-  - a migration preenche slugs únicos;
-  - `DisciplineCatalog::sync` grava o slug;
+  - as 49 disciplinas têm slugs únicos (por exemplo, "Criação de Páginas WEB" vira `criacao-de-paginas-web`);
   - `GET /disciplines` devolve `slug`, `workload_hours` e `syllabus_url`;
   - a rota continua exigindo autenticação.
 - **Frontend:** `npm run lint` e `npm run typecheck` (`make lint`). O front não tem runner de testes, e a normalização da busca é uma linha (`normalize('NFD')` sem os diacríticos, em minúsculas). Ela é conferida à mão na tela, com "computacao" encontrando "Computação".
