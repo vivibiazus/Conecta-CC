@@ -25,7 +25,22 @@ it('lista o catálogo ordenado por semestre e nome', function () {
         ->getJson('/api/v1/disciplines')
         ->assertOk()
         ->assertJsonCount(49)
-        ->assertJsonPath('0', ['id' => Discipline::where('name', 'Algoritmos I')->value('id'), 'name' => 'Algoritmos I', 'semester' => 1]);
+        ->assertJsonPath('0', [
+            'id' => Discipline::where('name', 'Algoritmos I')->value('id'),
+            'name' => 'Algoritmos I',
+            'slug' => 'algoritmos-i',
+            'semester' => 1,
+            'workload_hours' => 75,
+            'syllabus_url' => 'https://inf.passofundo.ifsul.edu.br/assets/docs/bcc/ementas/primeiro_semestre/PF_CC_1_Algoritmos_I.pdf',
+        ]);
+});
+
+it('gera um slug único e legível para cada disciplina', function () {
+    $slugs = Discipline::all()->pluck('slug');
+
+    expect($slugs->unique())->toHaveCount(49)
+        ->and(Discipline::where('name', 'Criação de Páginas WEB')->sole()->slug)->toBe('criacao-de-paginas-web')
+        ->and($slugs->every(fn (?string $slug) => preg_match('/^[a-z0-9]+(-[a-z0-9]+)*$/', (string) $slug) === 1))->toBeTrue();
 });
 
 it('exige login para ver o catálogo', function () {

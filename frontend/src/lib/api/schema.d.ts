@@ -124,7 +124,10 @@ export interface components {
         DisciplineResource: {
             id: number;
             name: string;
+            slug: string;
             semester: number;
+            workload_hours: number;
+            syllabus_url: string | null;
         };
         /** LoginRequest */
         LoginRequest: {
