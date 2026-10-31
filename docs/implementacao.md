@@ -221,7 +221,9 @@ Implementado em 19/10/2026 (spec `specs/2026-10-19-perfil-design.md`). Catálogo
 
 # 8. Estudos
 
-Implementar:
+Estudos é implementado em duas etapas (decidido em 31/10/2026). O envio de material só entra na `main` junto com a Moderação, para nunca existir envio que ninguém consegue aprovar.
+
+## Etapa 1 — Estudos (leitura)
 
 - [ ] Minhas disciplinas.
 - [ ] Todas as disciplinas.
@@ -229,12 +231,16 @@ Implementar:
 - [ ] identificação de "Minha disciplina".
 - [ ] página da disciplina.
 - [ ] acesso à ementa oficial quando houver URL confirmada.
-- [ ] materiais aprovados.
 - [ ] estado sem materiais.
-- [ ] disciplina ainda sem área de materiais.
+
+Todas as disciplinas têm área de materiais (decisão de 31/10/2026), então o estado "disciplina ainda sem área de materiais" (RF-34) não entra agora.
+
+## Etapa 2 — Materiais + Moderação de material
+
 - [ ] formulário Compartilhar material.
 - [ ] envio de material por link.
-- [ ] integração com Moderação.
+- [ ] fila de Moderação só com MATERIAL (ver §14; PUBLICAÇÃO e OPORTUNIDADE entram com seus módulos).
+- [ ] materiais aprovados na página da disciplina.
 
 ## Referência acadêmica inicial
 
@@ -602,11 +608,11 @@ Uma ordem possível é:
 3. layout global;
 4. Perfil;
 5. Home;
-6. Estudos;
-7. Oportunidade;
-8. Comunidade;
-9. Perfil público;
-10. núcleo de Moderação;
+6. Estudos — etapa 1 (leitura);
+7. Materiais + núcleo de Moderação (só MATERIAL) — etapa 2 de Estudos;
+8. Oportunidade (entra na fila de Moderação);
+9. Comunidade (entra na fila de Moderação);
+10. Perfil público;
 11. notificações;
 12. Configurações;
 13. estados de erro e loading;
