@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { ChevronDown } from 'lucide-react';
+import { useId, useState } from 'react';
 import { Link } from 'react-router';
 import { TextField } from '@/components/TextField';
 import { Button } from '@/components/ui/button';
+import type { Discipline } from '@/features/profile/hooks';
 import { DisciplineCard } from './DisciplineCard';
 import { normalizeSearch } from './normalize';
 import { StudiesError, StudiesLoading } from './StudiesStatus';
@@ -75,27 +77,60 @@ export function StudiesPage() {
               {found.length === 0 ? (
                 <p className="mt-4 text-base text-foreground">Nenhuma disciplina encontrada para “{query.trim()}”.</p>
               ) : (
-                SEMESTERS.map((semester) => {
-                  const group = found.filter((discipline) => discipline.semester === semester);
-                  if (group.length === 0) return null;
-                  return (
-                    <div key={semester} className="mt-8">
-                      <h3 className="font-display text-xl font-bold text-foreground">{semester}º semestre</h3>
-                      <ul className={`mt-4 ${GRID}`}>
-                        {group.map((discipline) => (
-                          <li key={discipline.id}>
-                            <DisciplineCard discipline={discipline} mine={mineIds.has(discipline.id)} />
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  );
-                })
+                <div className="mt-6 space-y-3">
+                  {SEMESTERS.map((semester) => {
+                    const group = found.filter((discipline) => discipline.semester === semester);
+                    if (group.length === 0) return null;
+                    // a key muda ao entrar e sair da busca: os grupos reabrem com o resultado e fecham ao limpar
+                    return (
+                      <SemesterGroup
+                        key={`${semester}-${term ? 'busca' : 'lista'}`}
+                        semester={semester}
+                        disciplines={group}
+                        mineIds={mineIds}
+                        defaultOpen={term !== ''}
+                      />
+                    );
+                  })}
+                </div>
               )}
             </section>
           </>
         )}
       </div>
+    </div>
+  );
+}
+
+type SemesterGroupProps = { semester: number; disciplines: Discipline[]; mineIds: Set<number>; defaultOpen: boolean };
+
+function SemesterGroup({ semester, disciplines, mineIds, defaultOpen }: SemesterGroupProps) {
+  const [open, setOpen] = useState(defaultOpen);
+  const panelId = useId();
+
+  return (
+    <div className="rounded-2xl border border-blue-200/70 bg-white">
+      <h3 className="font-display text-xl font-bold text-foreground">
+        <button
+          type="button"
+          aria-expanded={open}
+          aria-controls={panelId}
+          onClick={() => setOpen((current) => !current)}
+          className="flex min-h-14 w-full items-center justify-between gap-3 rounded-2xl px-6 py-4 text-left hover:bg-[#f5f9fe]"
+        >
+          {semester}º semestre
+          <ChevronDown className={`size-5 shrink-0 transition-transform ${open ? 'rotate-180' : ''}`} aria-hidden />
+        </button>
+      </h3>
+      {open && (
+        <ul id={panelId} className={`px-6 pb-6 ${GRID}`}>
+          {disciplines.map((discipline) => (
+            <li key={discipline.id}>
+              <DisciplineCard discipline={discipline} mine={mineIds.has(discipline.id)} />
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }

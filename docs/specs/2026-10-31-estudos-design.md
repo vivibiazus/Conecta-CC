@@ -75,6 +75,7 @@ Cabeçalho: "Estudos", com o subtítulo "Acesse suas disciplinas e materiais com
 **Todas as disciplinas**
 - O campo "Buscar disciplina" filtra pelo nome sem diferenciar maiúsculas de minúsculas e ignorando acentos ("computacao" encontra "Computação"). A busca roda no navegador.
 - Os grupos aparecem como "1º semestre" a "8º semestre", e um grupo sem resultados some.
+- Cada semestre abre e fecha ao clicar no título (botão com `aria-expanded`). Todos começam fechados (decisão do Marcelo, 31/10/2026). Durante a busca, os semestres com resultado abrem sozinhos e voltam a fechar quando a busca é limpa **(escolha do Claude)**.
 - O contador mostra "N disciplinas" ou "1 disciplina" e é anunciado ao leitor de tela (`aria-live="polite"`).
 - Sem resultados: "Nenhuma disciplina encontrada para “<busca>”."
 - O aviso do protótipo "Lista de demonstração do protótipo…" não entra, porque o catálogo agora é o oficial.
