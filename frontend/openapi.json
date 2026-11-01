@@ -238,14 +238,29 @@
                     "name": {
                         "type": "string"
                     },
+                    "slug": {
+                        "type": "string"
+                    },
                     "semester": {
                         "type": "integer"
+                    },
+                    "workload_hours": {
+                        "type": "integer"
+                    },
+                    "syllabus_url": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
                     }
                 },
                 "required": [
                     "id",
                     "name",
-                    "semester"
+                    "slug",
+                    "semester",
+                    "workload_hours",
+                    "syllabus_url"
                 ],
                 "title": "DisciplineResource"
             },

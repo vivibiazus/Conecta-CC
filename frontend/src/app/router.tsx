@@ -5,10 +5,11 @@ import { LoginPage } from '@/features/auth/LoginPage';
 import { RegisterPage } from '@/features/auth/RegisterPage';
 import { HomePage } from '@/features/home/HomePage';
 import { ProfilePage } from '@/features/profile/ProfilePage';
+import { DisciplinePage } from '@/features/studies/DisciplinePage';
+import { StudiesPage } from '@/features/studies/StudiesPage';
 import { UnderConstructionPage } from '@/pages/UnderConstructionPage';
 
 const placeholders = [
-  ['/estudos', 'Estudos'],
   ['/oportunidade', 'Oportunidade'],
   ['/comunidade', 'Comunidade'],
   ['/configuracoes', 'Configurações'],
@@ -30,6 +31,8 @@ export const router = createBrowserRouter([
         children: [
           { path: '/home', element: <HomePage /> },
           { path: '/perfil', element: <ProfilePage /> },
+          { path: '/estudos', element: <StudiesPage /> },
+          { path: '/estudos/:slug', element: <DisciplinePage /> },
           ...placeholders.map(([path, title]) => ({ path, element: <UnderConstructionPage title={title} /> })),
           {
             element: <RequireModeration />,

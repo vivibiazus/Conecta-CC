@@ -29,8 +29,8 @@ A intenção é diferenciar claramente o que já foi definido e prototipado do q
 | Recuperação de senha | ✅ | ✅ | ⏳ | ⏳ |
 | Home | ✅ | ✅ | ⏳ | ⏳ |
 | Perfil | ✅ | ✅ | ⏳ | ⏳ |
-| Estudos | ✅ | ✅ | ⏳ | ⏳ |
-| Página da disciplina | ✅ | ✅ | ⏳ | ⏳ |
+| Estudos | ✅ | ✅ | ✅ (leitura) | ⏳ |
+| Página da disciplina | ✅ | ✅ | ✅ (sem materiais) | ⏳ |
 | Compartilhamento de material | ✅ | ✅ | ⏳ | ⏳ |
 | Oportunidade | ✅ | ✅ | ⏳ | ⏳ |
 | Indicação de oportunidade | ✅ | ✅ | ⏳ | ⏳ |

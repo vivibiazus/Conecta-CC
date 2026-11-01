@@ -1161,3 +1161,24 @@ O princípio vale para integrações futuras (Moodle, SUAP, páginas institucion
 - Os cards do Perfil ocupam toda a largura da área de conteúdo, e não só uma coluna à esquerda como no protótipo.
 - GitHub e LinkedIn aceitam **só o endereço do perfil da pessoa**. Query string e fragmento são descartados, e o LinkedIn aceita subdomínio de país (`br.linkedin.com`). Os links são salvos como `https://github.com/usuario` e `https://www.linkedin.com/in/usuario`.
 - Os limites de texto definitivos continuam pendentes (`pendencias.md` 2.7). Até lá vale um teto técnico provisório (Nome de exibição 120, Sobre mim 5.000, 255 por tag, 50 tags por campo), sem contador na tela.
+
+---
+
+# 54. Estudos (etapa 1) — 31/10/2026
+
+Decisões tomadas na definição de Estudos (spec `specs/2026-10-31-estudos-design.md`).
+
+## 54.1 Duas etapas
+
+Estudos é implementado em duas etapas. A etapa 1 é só leitura: Minhas disciplinas, Todas as disciplinas, busca e página da disciplina. A etapa 2 traz Compartilhar material junto com a Moderação de material. As duas metades da etapa 2 entram juntas na `main`, para nunca existir um envio que ninguém consegue aprovar.
+
+## 54.2 Materiais em todas as disciplinas
+
+Todas as 49 disciplinas do catálogo têm área de materiais. Não existe lista de disciplinas piloto para materiais. Isso substitui, para materiais, o item "Disciplinas piloto" (§19) e a nota de 53.2. O estado "Materiais ainda não disponíveis" (RF-34) não aparece enquanto essa regra valer.
+
+## 54.3 Tela Estudos e página da disciplina
+
+- Todas as disciplinas aparecem agrupadas por semestre (1º a 8º), em ordem alfabética dentro de cada grupo. A busca ignora acentos e maiúsculas.
+- Cada semestre abre e fecha ao clicar, e todos começam fechados. Durante a busca, os semestres com resultado abrem sozinhos.
+- A página da disciplina mostra semestre e carga horária junto do link "Ver ementa oficial".
+- O endereço é legível: `/estudos/estrutura-de-dados-iii`. O slug é calculado a partir do nome e não fica guardado no banco.

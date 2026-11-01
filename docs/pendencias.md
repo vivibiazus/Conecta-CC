@@ -108,6 +108,8 @@ Essa verificação não bloqueia a arquitetura nem as atividades atuais.
 
 > **Atualização (19/10/2026):** o catálogo já está carregado com as 49 disciplinas obrigatórias da Matriz 2023 (`decisoes.md` 53.2). Continuam em aberto: quais disciplinas terão área de materiais, quais participarão do piloto, as eletivas e a Matriz 2017.
 
+> **Atualização (31/10/2026):** todas as disciplinas têm área de materiais (`decisoes.md` 54.2), então não há mais escolha de disciplinas piloto para materiais. Continuam em aberto: as disciplinas do piloto com estudantes, as eletivas e a Matriz 2017.
+
 ---
 
 ## 1.4 Anonimato público dos materiais
